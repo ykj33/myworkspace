@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!-- selector를 조합 -->
+<html>
+
+<head>
+    <style>
+        h1,
+        p {
+            color: blue;
+        }
+
+        p.spec.note {
+            color: red;
+        }
+
+        /* decendnat selector 자손을 선택할 때 */
+        .container h2 {
+            color: yellowgreen;
+        }
+
+        /* child selector 자식(바로 아래의 element)*/
+        .container>h2 {
+            color: red;
+        }
+
+        /* adjacent sibling selector 같은부모, 바로 다음에 오는 것만 선택 */
+        .container+h2 {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Lorem, ipsum dolor.</h2>
+    <div class="container">
+        <h2>Lorem, ipsum dolor.</h2>
+        <div>
+            <h2>Lorem, ipsum dolor.</h2>
+        </div>
+    </div>
+    <h2>Lorem, ipsum dolor.</h2>
+    <h2>Lorem, ipsum dolor.</h2>
+    <h1>Lorem, ipsum dolor.</h1>
+    <p class="spec note">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut natus explicabo ipsam ipsum,
+        nesciunt consequatur ratione laborum vero nemo molestiae cum repellendus id possimus, itaque illum nam fuga,
+        repellat aliquam!</p>
+</body>
+
+</html>
