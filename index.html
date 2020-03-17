@@ -18,6 +18,29 @@
 <body>
     <div class="container">
         <h1>내 첫 번 째 웹페이지</h1>
+
+    </div>
+    <div class="container">
+        <div class="carousel slide" data-ride="carousel" id="demo">
+            <!-- 하단인디케이터 active는 처음 시작 값 -->
+            <ul class="carousel-indicators">
+                <li data-target="#demo" data-slide-to="0" active>
+                </li>
+                <li data-target="#demo" data-slide-to="1">
+                </li>
+                <li data-target="#demo" data-slide-to="2">
+                </li>
+            </ul>
+            <!-- 슬라이드 쇼, active 속성은 처음 시작하는 값 -->
+            <div class="carousel-inner">
+                <div class="carousel-item active"><img src="chicago.jpg" alt="" class="d-block w-100"></div>
+                <div class="carousel-item"><img src="la.jpg" alt="" class="d-block w-100"></div>
+                <div class="carousel-item"><img src="ny.jpg" alt="" class="d-block w-100"></div>
+            </div>
+            <!-- 오른쪽 왼쪽 버튼 -->
+            <a href="#demo" class="carousel-control-prev" data-slide="prev"><span class="carousel-control-prev-icon"></span></a>
+            <a href="#demo" class="carousel-control-next" data-slide="next"><span class="carousel-control-next-icon"></span></a>
+        </div>
     </div>
 </body>
 
