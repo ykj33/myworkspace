@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <!-- 4개의 함수를 만들어보자 -->
+    <div class='container'>
+        <input type="number" class="form-control" name="" id="input1">
+        <input type="number" class="form-control" name="" id="input2">
+        <button onclick="plus();" class="btn btn-warning"><i class="fas fa-plus"></i></button>
+        <button onclick="minus();" class="btn btn-secondary"><i class="fas fa-minus"></i></button>
+        <button onclick="times();" class="btn btn-info"><i class="fas fa-times"></i></button>
+        <button onclick="divide();" class="btn btn-primary"><i class="fas fa-divide"></i></button>
+        <button onclick="remainder();" class="btn btn-success"><i class="fas fa-percent"></i></button>
+        <div id="result"></div>
+    </div>
+    <script>
+        function plus() {
+            var num1 = document.getElementById("input1").value;
+            var num2 = document.getElementById("input2").value;
+
+            var r = Number(num1) + Number(num2);
+
+            document.getElementById('result').innerHTML = r + "입니다.";
+        }
+
+        function minus() {
+            var num1 = document.getElementById("input1").value;
+            var num2 = document.getElementById("input2").value;
+
+            var r = Number(num1) - Number(num2);
+
+            document.getElementById('result').innerHTML = r + "입니다.";
+        }
+
+        function times() {
+            var num1 = document.getElementById("input1").value;
+            var num2 = document.getElementById("input2").value;
+
+            var r = Number(num1) * Number(num2);
+
+            document.getElementById("result").innerHTML = r + "입니다.";
+        }
+
+        function divide() {
+            var num1 = document.getElementById("input1").value;
+            var num2 = document.getElementById("input2").value;
+
+            var r = Number(num1) / Number(num2);
+
+            document.getElementById("result").innerHTML = r + '입니다.';
+        }
+
+        function remainder() {
+            var num1 = document.getElementById("input1").value;
+            var num2 = document.getElementById("input2").value;
+
+            var r = Number(num1) / Number(num2);
+            var p = Number(num1) % Number(num2);
+            document.getElementById("result").innerHTML = "몫은" + parseInt(r) + "이고, 나머지는 " + p + '입니다.';
+        }
+    </script>
+</body>
+
+</html>
