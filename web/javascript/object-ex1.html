@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class='container'>
+    </div>
+    <script>
+        // 객체는 중괄호로 준비
+        // property
+        var person = {
+            firstName: "John",
+            lastName: "Doe",
+            age: 50,
+            eyeColor: "blue"
+        };
+        var person2 = {
+            firstName: "Donald",
+            lastName: "Trump",
+            age: 60,
+            eyeColor: "brown"
+        };
+
+        console.log(person.firstName);
+        console.log(person.lastName);
+        console.log(person.age);
+        console.log(person.eyeColor);
+
+        console.log(person2.firstName);
+        console.log(person2.lastName);
+        console.log(person2.age);
+        console.log(person2.eyeColor);
+
+        // property의 값 변경 가능
+        person2.eyeColor = "black";
+        person.eyeColor = "yellow";
+        console.log(person2.eyeColor);
+        console.log(person.eyeColor);
+
+        //객체명["property명"]으로 해도 할 수 있다.
+        console.log(person2["eyeColor"]);
+
+        // 메소드, 함수가 객체 안에 있으면 메소드
+        var person3 = {
+            firstName: "Jane",
+            lastName: "Doe",
+            age: 30,
+            eyeColor: "brown",
+            // 객체 내에 메소드 정의
+            walk: function() {
+                console.log("걷는다.");
+            },
+            name: function() {
+                return "Jane Doe";
+            }
+        };
+        console.log(person3.eyeColor);
+        // 메소드 실행
+        person3.walk();
+        console.log(person3.name());
+
+        // this keyword
+        var person4 = {
+            firstName: "길동",
+            lastName: "홍",
+            name: function() {
+                //현재 메소드가 속한 객체의 property를 호출하기 위해서
+                // this를 사용
+                console.log(this.firstName);
+                console.log(this.lastName);
+                return this.firstName + ", " + this.lastName;
+            }
+        };
+        var fullName = person4.name();
+        console.log(fullName);
+    </script>
+</body>
+
+</html>

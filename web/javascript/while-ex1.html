@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class='container'>
+        <!-- 버튼을 누르면 숫자가 반복해서 h1 element에 삽입 -->
+        <input type="text" id="input1" class="form-control">
+        <button onclick="count()" class="btn btn-warning">반복</button>
+        <h1 id="result"></h1>
+    </div>
+    <script>
+        function count() {
+            var n = document.getElementById("input1").value;
+            n = Number(n);
+            var text = "";
+            // for (var i = 1; i <= n; i++) {
+            //     text += i + "<br>";
+            // }
+
+            var i = 1; // 초기값을 설정해주어야 한다.
+            while (i <= n) { // 괄호 안에 조건
+                text += i + "<br>"; // 이 statement가 반복
+                i++; //증가하는 값은 statement 실행 후 실행
+            }
+            document.getElementById("result").innerHTML = text;
+        }
+    </script>
+</body>
+
+</html>
