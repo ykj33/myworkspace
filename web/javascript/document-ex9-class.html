@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .dark {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="addClass()">클래스 추가</button>
+    <button onclick="removeClass()">클래스 제거</button>
+    <button onclick="toggleClass()">클래스 토글</button>
+    <h1 id="head1">Lorem, ipsum dolor.</h1>
+
+    <script>
+        // 클래스가 없으면 추가, 있으면 제거
+        function toggleClass() {
+            document.getElementById("head1").classList.toggle("dark");
+        }
+        // element에 class 추가도 가능
+        function addClass() {
+            document.getElementById("head1").classList.add("dark");
+        }
+        // class 제거 가능
+        function removeClass() {
+            document.getElementById("head1").classList.remove("dark");
+        }
+    </script>
+</body>
+
+</html>

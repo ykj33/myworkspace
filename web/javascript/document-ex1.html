@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body>
+    <p id="para1">Lorem.</p>
+    <!-- script를 body 종료 바로 전에 작성하여 객체 선언이 미처 되지 못할 수 있는 문제를 해결한다. -->
+    <script>
+        // 브라우저가 객체화 시켜 document에 넣어놓은 element객체를 가져옴
+        var myPara = document.getElementById("para1");
+        // element 그 자체 이기에 element 처럼 표기
+        console.log(myPara);
+        // 시작태그와 종료태그 사이에 있는 property의 값을 가져오는 것이 innerHTML
+        console.log(myPara.innerHTML);
+        // 객체의 값을 바꾸면 실제 문서에 반영된다. element를 객체로 바꾸어 document에 저장시켜 놓았기 때문
+        myPara.innerHTML = "hello";
+    </script>
+</body>
+
+</html>

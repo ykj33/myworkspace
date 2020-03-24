@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body>
+    <form action="">
+        <input type="text">
+    </form>
+    <p id="para1" class="mypara">Lorem.</p>
+    <p id="para2" class="mypara">Sapiente!</p>
+    <p id="para3">Quas.</p>
+
+    <img src="1.jpg" alt="">
+    <img src="2.jpg" alt="">
+    <img src="3.jpg" alt="">
+
+    <script>
+        //element들을 document로 받아온다.
+
+        var para1 = document.getElementById("para1");
+        console.log(para1);
+
+        // element들을 tagname으로 식별, 배열처럼 사용하면 된다.
+        var paras = document.getElementsByTagName("p");
+        console.log(paras[1]);
+
+        var paras2 = document.getElementsByClassName("mypara");
+        console.log(paras2[0]);
+
+        // 모든 form element들을 가지고 있음
+        // 자주 사용하는 것들은 property처럼 사용할 수 있음
+        var forms = document.forms;
+        console.log(forms[0]);
+
+        // image element들을 받아오기
+        var images = document.images;
+        console.log(images[1]);
+
+        // 해당 selector에 해당하는 element 하나만 가져옴(id)
+        var para3 = document.querySelector("#para3");
+        console.log(para3);
+
+        // 해당 selector에 해당하는 element들을 다 가져옴(class)
+        var paras2 = document.querySelectorAll(".mypara");
+        console.log(paras2[0]);
+    </script>
+</body>
+
+</html>

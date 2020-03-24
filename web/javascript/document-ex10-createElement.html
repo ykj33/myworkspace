@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <script>
+        // 함수는 바로 실행되는 것이 아니므로 문서 어느 곳에서 선언되어도 상관없다.
+        function addElement() {
+            // 새로운 Element 생성 가능
+            var newElem = document.createElement("p");
+            // element가 생성되었으므로 값을 줄 수 있으나 아직 DOM 트리에 포함되지 않았음
+            newElem.innerHTML = "새로운 요소" + parseInt(Math.random() * 100 + 1)
+                // result 내부에 생성됨 차례로 생성됨
+            document.getElementById("result").appendChild(newElem);
+            // result 내부에 역순으로 생성 가능
+            // document.getElementById("result").prepend(newElem);
+        }
+    </script>
+</head>
+
+<body>
+    <button onclick="addElement()">추가</button>
+    <div id="result"></div>
+</body>
+
+</html>

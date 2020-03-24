@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body>
+    <div id="container">
+        <p>Lorem, ipsum.</p>
+        <p>Laborum, unde?</p>
+        <p>Quasi, corporis.</p>
+    </div>
+    <script>
+        var con = document.getElementById("container");
+        // 자식 element를 선택
+        var ch = con.children;
+        console.log(ch[0]);
+        console.log(ch[1]);
+        console.log(ch[2]);
+
+        // 처음 자식 element 호출
+        console.log(con.firstElementChild);
+        // 마지막 자식 element 호출
+        console.log(con.lastElementChild);
+
+        // 같은 형제들 중 다음 element
+        console.log(ch[1].nextElementSibling);
+        // 같은 형제들 중 이전 element
+        console.log(ch[1].previousElementSibling);
+
+        // 부모 element
+        console.log(ch[1].parentElement);
+        console.log(ch[2].parentElement);
+    </script>
+</body>
+
+</html>
