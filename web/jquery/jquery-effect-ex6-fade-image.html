@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <style>
+        #small-image1 {
+            width: 100px;
+        }
+        
+        #big-image1 {
+            width: 100%;
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+    <script>
+        $(function() {
+            $("#small-image1").click(function() {
+                $('#big-image1').fadeIn();
+            });
+            $("#big-image1").click(function() {
+                // this를 사용하여 자기 자신을 객체로 이용한다.
+                // 그냥 원래 쓰려고 했던 선택자를 사용하여도 무방함
+                $(this).fadeOut();
+            })
+        });
+    </script>
+</head>
+
+<body>
+    <img id="small-image1" src="../javascript/아이언맨.jpg" alt="">
+    <img id="big-image1" src="../javascript/아이언맨.jpg" alt="">
+</body>
+
+</html>

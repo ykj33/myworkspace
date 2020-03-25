@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+
+    </style>
+    <script>
+        $(document).ready(function() {
+            // 문서가 로딩 될 때는 다 안보이게 하기
+            $("p").hide();
+            // 버튼을 클릭할 때
+            $("#btn1").click(function() {
+                // p element는 다 가리고
+                $("p").hide();
+                // 버튼을 누른 p element만 보이게 하기
+                $("#btn1+p").show();
+            });
+            $("#btn2").click(function() {
+                $("p").hide();
+                $("#btn2+p").show();
+            });
+            $("#btn3").click(function() {
+                $("p").hide();
+                $("#btn3+p").show();
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    <div class='container'>
+        <button id="btn1" class="btn btn-block btn-primary">첫번째</button>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia expedita tempora dolor, aspernatur tempore accusamus perspiciatis dolorem, perferendis itaque fuga sequi soluta odio. Odio, ab reprehenderit tempora inventore explicabo rem.</p>
+        <button id="btn2" class="btn btn-block btn-primary">두번째</button>
+        <p>Odit tempora hic doloremque! Consequuntur pariatur hic labore quia, id, accusamus explicabo quam deleniti at eos architecto exercitationem reprehenderit saepe dolor beatae delectus repellat eligendi quod nisi similique ipsa ab?</p>
+        <button id="btn3" class="btn btn-block btn-primary">세번째</button>
+        <p>Explicabo ab totam temporibus exercitationem, laborum iure odit mollitia fuga sint! Ex, dolor dolore incidunt, nobis possimus repudiandae totam consequuntur accusamus quibusdam, quidem quos! Ad aspernatur et ipsam velit harum?</p>
+    </div>
+</body>
+
+</html>

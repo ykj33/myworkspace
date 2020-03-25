@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class='container'>
+        <p id="para1">Lorem.</p>
+        <p id="para2">Et.</p>
+        <p id="para3">Dolorum.</p>
+    </div>
+    <script>
+        // 기존에 사용하던 javascript 방법
+        var para1 = document.getElementById("para1").innerHTML;
+        // jquery 방법
+        var para2 = $("#para2").html();
+        console.log(para1);
+        console.log(para2);
+
+        // 기존의 방법으로 p element 다중 선택
+        var paras1 = document.getElementsByTagName("p");
+        for (var i = 0; i < paras1.length; i++) {
+            paras1[i].innerHTML = "hello";
+        }
+        // jquery를 사용
+        $("p").html("jquery hello");
+    </script>
+</body>
+
+</html>

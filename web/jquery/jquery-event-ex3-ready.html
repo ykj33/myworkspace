@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+
+    </style>
+    <script>
+        //document객체를 선택하여 jquery객체로 만든 후 ready메소드 사용
+        $(document).ready(function() {
+            console.log("문서 로딩이 완료");
+            /* #button1객체가 아직 DOM트리에 포함되지 않아 실행되지 않을 때
+            함수를 ready메소드 안에 넣어서 문서 로딩이 완료되었을 때 실행되도록 함
+            따라서 body element가 끝나기 전에 입력하지 않아도 됨 */
+            $("#button1").click(function() {
+                console.log("버튼 클릭됨");
+
+            });
+
+        });
+        // $(document).ready();와 같음
+        $(function() {
+            console.log("문서 로딩이 완료됨2");
+            $("#button1").click(function() {
+                console.log("버튼 클릭됨");
+
+            });
+
+        })
+    </script>
+</head>
+
+<body>
+    <div class='container'>
+        <button class="btn btn-block btn-info" id="button1">이벤트등록해줘</button>
+    </div>
+
+</body>
+
+</html>

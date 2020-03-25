@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+
+    </style>
+    <script>
+        $(document).ready(function() {
+            $("#button1").click(function() {
+                // 해당 객체를 숨긴다.
+                $("p").hide();
+            });
+            $("#button2").click(function() {
+                // parameter값으로 ms값을 받을 수 있다.
+                // parameter값만큼 시간이 걸리며 사라짐
+                // fast,slow 등의 키워드를 넣을 수 있음
+                $("#button2+p").hide(2000);
+            })
+        });
+    </script>
+</head>
+
+<body>
+    <div class='container'>
+        <button class="btn btn-block btn-info" id="button1">숨겨라</button>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente corporis quas in expedita amet facere placeat inventore aliquid reprehenderit dolores recusandae rerum molestias necessitatibus laudantium, quis totam nostrum? Enim, officia!</p>
+        <button class="btn btn-block btn-warning" id="button2">숨겨라 + 파라미터</button>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga non mollitia inventore nesciunt recusandae minus accusamus nulla consequatur eius, minima quam, optio repellat numquam, adipisci unde amet aperiam commodi est.</p>
+    </div>
+</body>
+
+</html>

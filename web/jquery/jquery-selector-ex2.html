@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class='container'>
+        <p id="para1">Lorem.</p>
+
+        <h1 class="special">Lorem.</h1>
+        <p class="special">Lorem.</p>
+
+        <table class="table">
+            <tr>
+                <td>Lorem.</td>
+                <td>Voluptate!</td>
+                <td>Aliquid!</td>
+            </tr>
+            <tr>
+                <td>Velit!</td>
+                <td>Cum.</td>
+                <td>Sit!</td>
+            </tr>
+            <tr>
+                <td>Maiores.</td>
+                <td>Omnis?</td>
+                <td>Expedita!</td>
+            </tr>
+            <tr>
+                <td>A.</td>
+                <td>Earum.</td>
+                <td>Veritatis?</td>
+            </tr>
+            <tr>
+                <td>Ipsam?</td>
+                <td>Soluta.</td>
+                <td>Velit.</td>
+            </tr>
+            <tr>
+                <td>Quidem.</td>
+                <td>Beatae.</td>
+                <td>Eaque!</td>
+            </tr>
+        </table>
+
+        <input type="text" name="" id=""><br>
+        <input type="number" name="" id=""><br>
+        <input type="text" name="" id="" readonly="readonly">
+    </div>
+    <script>
+        //attribute로도 선택할 수 있다.
+        // ""를 쓰지 않으면 변수를 사용한다고 생각된다.
+        $("input[type='text']").css("background-color", "gold");
+        $("input[type='number']").css("background-color", "brown");
+        $("input[readonly]").css('background-color', 'blue');
+        //$(selector)로 선택하고 메소드를 실행한다.
+        $("#para1").css("background-color", "yellow");
+
+        $(".special").css("background-color", "red");
+
+        $("p").css("color", "blue");
+        // css의 odd는 1부터 시작
+        $("tr:nth-child(odd)").css("background-color", "gold");
+        // jquery의 odd는 0부터 시작
+        // css selector가 익숙하므로 주로 css selector 사용 할 것
+        $("tr:odd").css("color", "blue");
+    </script>
+</body>
+
+</html>

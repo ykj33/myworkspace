@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+
+    </style>
+    <script>
+        $(document).ready(function() {
+            // 버튼이 눌릴 때
+            $("#btn1").click(function() {
+                // input 창이 토글된다.
+                $("#input1").fadeToggle();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class='container'>
+        <div class="row">
+            <div class="col-2">
+                <button class="btn btn-block btn-info" id="btn1">
+    <i>
+        <span class="fas fa-search"></span>
+    </i>
+</button>
+            </div>
+            <div class="col-10">
+                <input type="text" name="" id="input1" class="form-control">
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
