@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+
+    </style>
+    <script>
+        $(document).ready(function() {
+            // 첫번째 element만 선택, 문서에 나오는 기준
+            $("h1").first().css("color", "yellow");
+            // 마지막 element만 선택
+            $("h1").last().css("color", "red");
+            // paramter번째 숫자, 0번 인덱스부터 시작
+            $("h1").eq(5).css("color", "blue");
+            // 해당 인자값을 가진 element만 적용
+            $("h1").filter(".myhead").css("color", "gold");
+            // 해당 인자값을 가지고 있지 않은 element만 적용
+            $("h1").not(".myhead").css("text-decoration", "underline");
+        });
+    </script>
+</head>
+
+<body>
+    <div class='container'>
+        <h1>Lorem, ipsum dolor.</h1>
+        <h1>Esse, quidem ducimus?</h1>
+        <h1 class="myhead">Laboriosam, ex vel.</h1>
+        <h1 class="myhead">Quidem, quos provident!</h1>
+        <h1>Ab, incidunt delectus!</h1>
+        <h1>Inventore, temporibus! Excepturi!</h1>
+        <h1>Ut, perspiciatis cumque.</h1>
+        <h1>Fugit, autem minima?</h1>
+        <h1>Est, consequuntur iure.</h1>
+        <h1>Magni, nulla eveniet.</h1>
+    </div>
+</body>
+
+</html>

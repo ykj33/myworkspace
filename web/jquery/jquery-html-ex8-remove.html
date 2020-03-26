@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+
+    </style>
+    <script>
+        $(document).ready(function() {
+            // 클릭된 아이템이 리스트에 추가
+            $("button").click(function() {
+                // 클릭된 버튼의 텍스트 값 가져오기
+                var text = $(this).text();
+                // 리스트 생성
+                var li = $("<li />");
+                // 리스트에 가져온 텍스트 값 추가
+                li.text(text);
+                // 클릭하면 제거
+                // li를 selector로 불러오면 X
+                // 해당 함수 내에서 정의된 li를 사용해야 하기 때문
+                li.click(function() {
+                    $(this).remove();
+                });
+                // 결과로 리스트 추가하기
+                $("#result").append(li);
+            });
+            /* 새로운 함수를 선언하여 li를 지우려고 한다면
+            지우려고 한 li가 선언되지 않았기 때문에
+            지울 수 없음. */
+        });
+    </script>
+</head>
+
+<body>
+    <div class='container'>
+        <!-- my-3 bootstrap에 있는 마진을 주는 속성 -->
+        <button class="btn btn-outline-info btn-block my-3">Lorem.</button>
+        <button class="btn btn-outline-info btn-block my-3">Deserunt?</button>
+        <button class="btn btn-outline-info btn-block my-3">Temporibus.</button>
+        <button class="btn btn-outline-info btn-block my-3">Enim.</button>
+        <button class="btn btn-outline-info btn-block my-3">Autem?</button>
+        <button class="btn btn-outline-info btn-block my-3">Esse?</button>
+        <ul id="result"></ul>
+    </div>
+</body>
+
+</html>

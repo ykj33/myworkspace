@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+        div {
+            padding: 10px;
+            border: 5px solid black;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            // 해당 element의 부모를 선택
+            $("#my1").parent().css("border", "5px solid blue");
+            // 해당 element의 모든 조상을 선택, body, html도 조상의 범주에 들어감
+            $("#my1").parents().css("border-top", "5px solid red");
+            // 해당 element에서 parameter값까지 선택, parameter값은 포함하지 않음
+            $("#my1").parentsUntil(".container").css("border-bottom", "5px dotted gold");
+        });
+    </script>
+</head>
+
+<body>
+    <div class='container'>
+        <div class="row">
+            <div class="col">
+                <div class="row" id="my1">
+                    my1
+                    <div class="col">
+                        <div class="row">
+                            <div class="col"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

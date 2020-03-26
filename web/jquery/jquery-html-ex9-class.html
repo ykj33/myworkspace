@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+        .blue {
+            background-color: blue;
+            font-size: 30px;
+            color: white;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            $("#btn1").click(function() {
+                // blue라는 클래스가 추가됨
+                $("#result").addClass("blue");
+            });
+            $('#btn2').click(function() {
+                // blue 클래스 제거
+                $("#result").removeClass("blue");
+            });
+            $("#btn3").click(function() {
+                // 클래스 토글
+                $("#result").toggleClass("blue");
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class='container'>
+        <button id="btn1" class="btn btn-primary">addClass</button>
+        <button id="btn2" class="btn btn-secondary">removeClass</button>
+        <button id="btn3" class="btn btn-info">toggleClass</button>
+    </div>
+    <div class="container">
+        <div id="result">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe eveniet ullam nobis reprehenderit culpa mollitia nesciunt minus, facere maxime sapiente quod obcaecati quasi accusamus recusandae possimus modi a illo praesentium.</div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+
+    </style>
+    <script>
+        $(document).ready(function() {
+            // 형제들
+            $("#myHeading").siblings().css("font-size", "50px");
+            // next는 코드 기준으로는 다음줄, 트리 기준으로는 오른쪽
+            $("#myHeading").next().css("color", "yellow");
+            // 해당 것의 뒤
+            $("#myHeading").nextAll().css("border-left", "2px solid red");
+            // 해당 선택된 것에서 인자값까지 자신들은 포함되지 않음
+            $("#myHeading").nextUntil(".until").css("font-family", "monospace");
+            // 해당 것의 앞, 코드기준으로 윗줄, 트리 기준으로 왼쪽
+            $("#myHeading").prev().css("color", "blue");
+            // 해당 것의 앞 모든 것
+            $("#myHeading").prevAll().css("border-right", "2px solid red");
+            // 해당부터 인자값까지, 자신들은 포함되지 않음
+            $("#myHeading").prevUntil(".until").css("font-family", "selif");
+        });
+    </script>
+</head>
+
+<body>
+    <div class='container'>
+
+        <h1>Lorem, ipsum dolor.</h1>
+        <h1 class="until">Veritatis, numquam hic?</h1>
+        <h1>Est, numquam voluptatibus!</h1>
+        <h1>Tempora, ab dolor.</h1>
+        <h1 id="myHeading">Quas, quos consectetur.</h1>
+        <h1>Sunt, commodi aspernatur?</h1>
+        <h1>Voluptatum, assumenda numquam!</h1>
+        <h1>Debitis, molestias molestiae!</h1>
+        <h1 class="until">Aperiam, voluptas assumenda.</h1>
+        <h1>Maxime, commodi aperiam.</h1>
+    </div>
+</body>
+
+</html>

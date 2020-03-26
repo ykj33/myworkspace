@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+
+    </style>
+    <script>
+        $(document).ready(function() {
+            $("#btn1").click(function() {
+                // $("")내부에 태그를 작성하면 새로운 element가 생성됨
+                var p1 = $("<p></p>");
+                p1.text("append로 붙일 새 element");
+                // 해당 element 종료 태그 바로 전에 추가
+                $("#result").append(p1);
+            });
+
+            // 태그 내부에 내용이 없을 경우 아래와 같이 추가해도 됨
+            // 시작태그 바로 다음에 추가
+            $("#btn2").click(function() {
+                var p2 = $("<p />");
+                p2.text("prepend로 붙일 새 element");
+                $("#result").prepend(p2);
+            });
+            // 형제로 해당태그 전에 붙음
+            $("#btn3").click(function() {
+                var p3 = $("<p />").text("before로 붙일 새 element")
+                $("#result").before(p3);
+            });
+            // 형제로 해당태그 다음에 붙음
+            $("#btn4").click(function() {
+                var p4 = $("<p />").text("after로 붙일 새 element")
+                $("#result").after(p4);
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class='container'>
+        <button class="btn btn-info" id="btn1">append</button>
+        <button class="btn btn-warning" id="btn2">prepend</button>
+        <button class="btn btn-danger" id="btn3">before</button>
+        <button class="btn btn-primary" id="btn4">after</button>
+        <div id="result"></div>
+    </div>
+</body>
+
+</html>

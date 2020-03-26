@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+
+    </style>
+    <script>
+        $(document).ready(function() {
+            $(".head-row").click(function() {
+                $(".data-row").animate({
+                    // 같은 객체 내에 작성되면 동시에 변경
+                    height: "toggle",
+                    // - 등의 특정 키워드가 객체의 propery명으로 작성되어야 할 경우
+                    // ""를 붙여서 작성해야 함
+                    "font-size": "25px"
+
+                }, 2000); // 하나의 statement가 끝나므로 ; 붙여 주어야 함
+                // 다른 객체 내에 animate 메소드를 작성하면 순서대로 변경
+                $(".data-row").animate({
+                    "font-size": "30px"
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class='container'>
+        <div class="table">
+            <div class="head-row">
+                <div>Lorem.</div>
+                <div>Voluptates!</div>
+                <div>Delectus.</div>
+            </div>
+            <div class="data-row">
+                <div>Lorem.</div>
+                <div>Quidem.</div>
+                <div>Earum?</div>
+            </div>
+            <div class="data-row">
+                <div>Accusantium?</div>
+                <div>Tenetur!</div>
+                <div>Culpa!</div>
+            </div>
+            <div class="data-row">
+                <div>Excepturi!</div>
+                <div>Provident.</div>
+                <div>Sint.</div>
+            </div>
+            <div class="data-row">
+                <div>Inventore!</div>
+                <div>Quae.</div>
+                <div>Quidem!</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

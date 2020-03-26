@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css'>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js'></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js'></script>
+    <title>Document</title>
+    <style>
+
+    </style>
+    <script>
+        $(document).ready(function() {
+            $("button").click(function() {
+                // click 이벤트를 받은 element를 사라지게 하고 싶기 때문에
+                // this를 사용
+                $(this).remove();
+            });
+            $("#head").click(function() {
+                // 해당 element안의 내용물만 삭제된다.
+                // 해당 element는 살아있음
+                $("#result").empty();
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    <div class='container'>
+        <button class="btn btn-outline-primary">Lorem.</button>
+        <button class="btn btn-outline-primary">Tenetur!</button>
+        <button class="btn btn-outline-primary">Aliquam?</button>
+        <button class="btn btn-outline-primary">Laboriosam?</button>
+        <button class="btn btn-outline-primary">Magnam?</button>
+        <button class="btn btn-outline-primary">Nesciunt.</button>
+        <button class="btn btn-outline-primary">Doloribus.</button>
+        <button class="btn btn-outline-primary">Saepe.</button>
+        <button class="btn btn-outline-primary">Repudiandae.</button>
+        <button class="btn btn-outline-primary">Totam.</button>
+
+        <div class="row">
+            <div class="col">
+                <h1 id="head">Lorem, ipsum.</h1>
+                <ul id="result">
+                    <li>Lorem.</li>
+                    <li>Sed!</li>
+                    <li>Iusto.</li>
+                    <li>Dolor!</li>
+                    <li>Voluptates?</li>
+                    <li>Voluptatem.</li>
+                    <li>Enim!</li>
+                    <li>Dolorum.</li>
+                    <li>Sit.</li>
+                    <li>Ex.</li>
+                    <li>Lorem.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
