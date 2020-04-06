@@ -13,7 +13,7 @@ public static void main(String[] args) {
 //		}
 //		
 //	}
-
+// array 배열 값을 하나씩 v에 넣어서 비교
 	for (int v : array) {
 		max = max < v? v : max;
 	}
