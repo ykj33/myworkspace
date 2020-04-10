@@ -1,9 +1,20 @@
 package chap07.lecture.polymorphism;
 
 public class PolyMorphismApp {
+
+	public static void sayCry(KindaCat c) {
+
+	}
+
 	public static void main(String[] args) {
 		Tiger t = new Tiger();
 		Cat c = new Cat();
+		
+		// 파라미터로 상위 클래스의 인스턴스를 받는 경우 하위 클래스의 인스턴스를 넣어줄 수 있음 
+		sayCry(t);
+		sayCry(c);
+		sayCry(new Tiger());
+		sayCry(new Cat());
 
 		long[] larr = new long[3];
 //		자동 타입 변환이 되어 int, long 다 넣을 수 있음
