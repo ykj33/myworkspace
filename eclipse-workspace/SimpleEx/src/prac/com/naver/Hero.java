@@ -12,7 +12,6 @@ public class Hero {
 	public Hero(Weapon[] weapons, int idx) {
 		super();
 		this.weapons = weapons;
-		this.hasWeapon = hasWeapon;
 		this.hasWeapon = weapons[idx];
 	}
 

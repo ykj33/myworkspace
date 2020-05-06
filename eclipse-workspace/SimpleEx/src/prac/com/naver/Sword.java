@@ -1,7 +1,6 @@
 package prac.com.naver;
 
 public class Sword extends Weapon {
-
 	public Sword() {
 		// TODO Auto-generated constructor stub
 	}
@@ -13,12 +12,12 @@ public class Sword extends Weapon {
 
 	@Override
 	public void describe() {
-		System.out.println("칼을 마구 휘두릅니다.");
-
+		System.out.println("검을 마구 벱니다.");
 	}
 
 	@Override
 	public String toString() {
+		// TODO Auto-generated method stub
 		return getName();
 	}
 }

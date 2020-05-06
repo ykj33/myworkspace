@@ -14,17 +14,6 @@ public abstract class Weapon {
 		this.attackPower = attackPower;
 	}
 
-	public void attack(Monster m) {
-		describe();
-		int cHp = m.getHp();
-		int rHp = cHp - attackPower;
-		m.setHp(rHp);
-		System.out.println("몬스터를 공격하였습니다.");
-		System.out.println(m);
-	}
-
-	public abstract void describe();
-
 	@Override
 	public String toString() {
 		return name;
@@ -46,4 +35,14 @@ public abstract class Weapon {
 		this.attackPower = attackPower;
 	}
 
+	public void attack(Monster m) {
+		describe();
+		int cHp = m.getHp();
+		int rHp = cHp - attackPower;
+		m.setHp(rHp);
+		System.out.println("몬스터를 공격하였습니다.");
+		System.out.println(m);
+	}
+
+	public abstract void describe();
 }
