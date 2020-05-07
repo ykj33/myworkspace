@@ -1,0 +1,195 @@
+// ID : ca, PW : ca인 계정 만들기
+SQL> CREATE USER ca IDENTIFIED BY ca;
+
+User created.
+// 현재 유저 보기
+SQL> SHOW USER
+USER is "SYSTEM"
+// ca에 연결하기. 권한이 없어 접속되지 않음
+SQL> CONN ca/ca
+ERROR:
+ORA-01045: user CA lacks CREATE SESSION privilege; logon denied
+
+
+Warning: You are no longer connected to ORACLE.
+SQL> SHOW USER
+USER is ""
+SQL> conn system/sys1234
+Connected.
+SQL> show user
+USER is "SYSTEM"
+// system 계정에서 ca로 권한 주기
+SQL> GRANT CONNECT, RESOURCE, DBA TO ca;
+
+Grant succeeded.
+
+SQL> conn ca/ca
+Connected.
+SQL> show user
+USER is "CA"
+SQL> conn system/sys1234
+Connected.
+// ca계정에서 권한 회수
+SQL> REVOKE CONNECT FROM ca;
+
+Revoke succeeded.
+
+SQL> SELECT * FROM DBA_ROLE_PRIVS WHERE GRANTEE = 'ca';
+
+no rows selected
+// 권한 목록 보기
+SQL> SELECT * FROM DBA_ROLE_PRIVS WHERE GRANTEE = 'CA';
+
+GRANTEE
+------------------------------------------------------------
+GRANTED_ROLE                                                 ADMIN_ DEFAUL
+------------------------------------------------------------ ------ ------
+CA
+RESOURCE                                                     NO     YES
+
+CA
+DBA                                                          NO     YES
+
+
+SQL> REVOKE RESOURCE, DBA FROM ca;
+
+Revoke succeeded.
+
+SQL> SELECT * FROM DBA_ROLE_PRIVS WHERE GRANTEE = 'CA';
+
+no rows selected
+
+// 다시 권한 주기
+SQL> GRANT CONNECT, RESOURCE, DBA TO ca;
+
+Grant succeeded.
+
+// 계정 비밀번호 변경
+ALTER USER ca IDENTIFIED BY ca2;
+
+// 계정 삭제
+DROP USER ca;
+
+// table 생성
+CREATE TABLE test(
+// 필드명 자료형(할당할 바이트)
+id VARCHAR2(6), 
+name VARCHAR2(21), 
+age NUMBER(3), 
+address NVARCHAR2(7) // 7자까지 작성할 수 있음, 한글 입력하고 싶을 시 사용, 그냥 VARCHAR2 사용해도 괜찮음
+);
+
+// table 삭제
+DROP TABLE test;
+DROP TABLE tbl_test2 CASCADE CONSTRAINTS; // 제약 조건을 무시하고 삭제
+
+id(char 5), name(char 12), age(number 3)
+CREATE TABLE test2 (
+id CHAR(5),
+name CHAR(12),
+age NUMBER(3)
+);
+
+CHAR(5): ABE -> 5글자가 입력됨. 공백 2개를 데이터로 인식함.
+VARCHAR2(5): ABE -> 3글자만 입력됨. 데이터가 많아질 시 느려질 수 있음.
+
+// table 수정
+// 컬럼 추가 ADD
+test2 테이블에
+address라는 컬럼을 추가하고 싶다.
+필드명과 자료형(크기);
+ALTER TABLE test2 ADD address VARCHAR2(100);
+ALTER TABLE test2 ADD phone CHAR(11);
+
+// 컬럼 수정 MODIFY
+ALTER TABLE test2 MODIFY phone VARCHAR2(11);
+ALTER TABLE test2 MODIFY name VARCHAR2(12);
+
+// 컬럼명 변경 RENAME COLUMN a TO b;
+ALTER TABLE test2 RENAME COLUMN phone TO tel;
+ALTER TABLE test2 RENAME COLUMN age TO nai;
+ALTER TABLE test2 RENAME COLUMN tel TO phone;
+ALTER TABLE test2 RENAME COLUMN nai TO age;
+
+// 컬럼 삭제 DROP COLUMN
+ALTER TABLE test2 DROP COLUMN phone;
+ALTER TABLE test2 DROP COLUMN address;
+
+// 테이블명 변경 RENAME a TO b;
+RENAME test2 to tbl_test2;
+
+
+CREATE TABLE employee(
+eid VARCHAR2(6),
+ename VARCHAR2(21),
+depart VARCHAR2(21)
+);
+// 데이터 넣기
+INSERT INTO employee (eid, ename, depart)
+values
+('e001', '홍길동', '인사팀');
+
+INSERT INTO employee (eid, ename, depart)
+values
+('e002', '김유신', '영업부');
+
+INSERT INTO employee (eid, ename, depart)
+values
+('', '유관순', '홍보팀');
+
+INSERT INTO employee (depart, eid)
+values
+('비서팀', 'e004');
+
+// DML 작업을 할 때, C, M, D는 꼭 확인을 한 번 해야 한다.
+commit과 rollback을 해야 하는데,
+commit은 exit로 sqlplus로 종료하여 저장하여 종료시켜야하고
+rollback은 강제로 종료하여 데이터를 날려야한다.
+commit, rollback을 의도적으로 해야 한다.
+
+
+INSERT INTO employee 
+(eid, ename, depart)
+values
+('e005', 'kim', '관리부');
+
+// 롤백, 커밋
+rollback시 되돌아가나 commit을 해버리면 돌아갈 수 없다.
+savepoint 설정 시 거기까지 rollback의 기준점이 될 수 있다.
+
+INSERT INTO employee
+(eid)
+values
+('e006');
+
+INSERT INTO employee
+(eid)
+values
+('e007');
+
+saveponit a
+
+
+INSERT INTO employee
+(eid)
+values
+('e008');
+
+
+INSERT INTO employee
+(eid)
+values
+('e009');
+
+// 컬럼의 순서를 알고 있으면 컬럼 명은 생략해도 된다.
+INSERT INTO employee
+values
+('e006','kim','영업부');
+
+// UPDATE
+UPDATE employee 
+SET 
+ename = 'park', 
+depart = '인사팀'
+WHERE 
+eid = 'e005';
