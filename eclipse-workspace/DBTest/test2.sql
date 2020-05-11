@@ -131,6 +131,43 @@ insert into student3
 values
 ('s04',null, 'a')
 
+insert into student3
+values
+('s05',1, 'k')
+
+insert into student3
+values
+('s06',1, 'j')
+
+insert into student3
+values
+('s07',1, 'z')
+
+commit
+
+delete from student3 where sid = 's07'
+select * from student3
+delete from student3 where sid = 's06'
+
+delete from student3 where sname = 'k'
+
+commit
+
+delete from depart where did = 3
+select * from depart
+
+delete from depart where did = 1 // 외래키로 사용되고 있기 때문에 삭제될 수 없다.
+
+update student3 set did = 2 where did = 1
+delete from depart where did = 1
+
+select * from student3
+
+
+
+
+
+
 
 
 
