@@ -9,7 +9,7 @@ import java.util.List;
 
 public class MemberDAO {
 	private final String DRIVERNAME = "oracle.jdbc.driver.OracleDriver";
-	private final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
+	private final String URL = "jdbc:oracle:thin:@211.183.2.57:1521:xe";
 	private final String USERNAME = "ca2";
 	private final String PASSWORD = "ca2";
 
@@ -23,7 +23,6 @@ public class MemberDAO {
 		}
 	}
 
-	
 	// 삭제
 	public void delete(String id) {
 		Connection conn = null;
@@ -50,7 +49,7 @@ public class MemberDAO {
 			}
 		}
 	}
-	
+
 	// 나이로 검색
 	public List<MemberDTO> searchByAge(int age) {
 		List<MemberDTO> list = new ArrayList<MemberDTO>();
@@ -90,6 +89,7 @@ public class MemberDAO {
 		return list;
 
 	}
+
 	// 이름으로 검색
 	public List<MemberDTO> searchByName(String name) {
 		List<MemberDTO> list = new ArrayList<MemberDTO>();
@@ -129,9 +129,8 @@ public class MemberDAO {
 		return list;
 
 	}
-	
-	
-	//아이디로 검색
+
+	// 아이디로 검색
 	public List<MemberDTO> searchById(String id) {
 		List<MemberDTO> list = new ArrayList<MemberDTO>();
 		Connection conn = null;
@@ -170,8 +169,7 @@ public class MemberDAO {
 		return list;
 
 	}
-	
-	
+
 	// 수정
 	public void update(MemberDTO dto) {
 		Connection conn = null;
