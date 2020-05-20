@@ -112,6 +112,56 @@ public class ProductDAO {
 
 	}
 
+	// sid 조회
+	public boolean selectSid(String sid) {
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT sid FROM tbl_storage WHERE sid = ?";
+		boolean isSid = false;
+		boolean isOk = false;
+		try {
+			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			System.out.println("커넥션 성공");
+			conn.setAutoCommit(false);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, sid);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				isSid = true;
+			}
+			isOk = true;
+		} catch (Exception e) {
+			System.out.println("커넥션 실패");
+			e.printStackTrace();
+		} finally {
+			try {
+				if (isOk) {
+					conn.commit();
+				} else {
+					conn.rollback();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return isSid;
+	}
+
 	// 조회
 	public List<ProductDTO> selectAll() {
 		List<ProductDTO> list = new ArrayList<ProductDTO>();
@@ -169,6 +219,7 @@ public class ProductDAO {
 
 	// 입력
 	public void insert(ProductDTO dto) {
+
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = "INSERT INTO tbl_product (pid, pname, amount, price, discount, sid) VALUES (?, ?, ?, ?, ?, ?) ";
@@ -187,7 +238,6 @@ public class ProductDAO {
 			pstmt.setInt(5, dto.getDiscount());
 			pstmt.setString(6, dto.getSid());
 			pstmt.executeUpdate();
-
 			// 트랜잭션을 위한 isOk 값 설정
 			isOk = true;
 		} catch (Exception e) {

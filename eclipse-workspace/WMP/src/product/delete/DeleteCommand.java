@@ -3,6 +3,7 @@ package product.delete;
 import java.util.Scanner;
 
 import product.com.naver.ProductDAO;
+import product.com.naver.ProductDTO;
 import product.kr.co.ca.ProductCommand;
 
 public class DeleteCommand implements ProductCommand {

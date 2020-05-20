@@ -28,7 +28,7 @@ public class ManagerDAO {
 	public void delete(String mid) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "delete from tbl_manager WHERE id=?";
+		String sql = "delete from tbl_manager WHERE mid=?";
 		
 		boolean isOk = false;
 		

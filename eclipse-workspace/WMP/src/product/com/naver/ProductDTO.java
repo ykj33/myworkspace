@@ -28,6 +28,12 @@ public class ProductDTO implements Serializable {
 		this.sid = sid;
 	}
 
+	public ProductDTO(String mid) {
+		super();
+
+		this.sid = sid;
+	}
+
 	public String getPid() {
 		return pid;
 	}

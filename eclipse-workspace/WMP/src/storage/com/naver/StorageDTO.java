@@ -18,6 +18,11 @@ public class StorageDTO {
 		this.mid = mid;
 	}
 
+	public StorageDTO(String mid) {
+		super();
+		this.mid = mid;
+	};
+
 	public String getSid() {
 		return sid;
 	}
