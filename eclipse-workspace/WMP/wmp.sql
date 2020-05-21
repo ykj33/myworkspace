@@ -22,4 +22,5 @@ dept varchar2(15)
 
 insert into tbl_manager (mid, mname, dept) values ('m001', 'kim', '인사');
 insert into tbl_storage (sid, location, stype, mid) values ('s001','서울','전자기기','m001');
-select * from tbl_storage
+select * from tbl_product
+delete from tbl_manager
