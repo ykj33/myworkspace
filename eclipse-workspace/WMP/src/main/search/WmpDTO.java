@@ -41,13 +41,14 @@ public class WmpDTO implements Serializable {
 		this.stype = stype;
 	}
 
-	public WmpDTO(String pname, String stype, String location, int amount, int price) {
+	public WmpDTO(String pname, String stype, String location, int amount, int price, int discount) {
 		super();
 		this.pname = pname;
 		this.amount = amount;
 		this.price = price;
 		this.location = location;
 		this.stype = stype;
+		this.discount = discount;
 	}
 
 	public int getTotalprice() {

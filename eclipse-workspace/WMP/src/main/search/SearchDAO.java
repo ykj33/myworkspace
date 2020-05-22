@@ -37,7 +37,7 @@ public class SearchDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select p.pname, s.stype, s.location, p.amount, p.price \r\n"
+		String sql = "select p.pname, s.stype, s.location, p.amount, p.price, p.discount \r\n"
 				+ "from tbl_storage s, tbl_product p \r\n" + "WHERE p.pname like '%'||?||'%' and s.sid = p.sid";
 
 		boolean isOk = false;
@@ -59,8 +59,9 @@ public class SearchDAO {
 				String location = rs.getString("location");
 				int amount = rs.getInt("amount");
 				int price = rs.getInt("price");
+				int discount = rs.getInt("discount");
 
-				WmpDTO pdto = new WmpDTO(pname1, stype1, location, amount, price);
+				WmpDTO pdto = new WmpDTO(pname1, stype1, location, amount, price, discount);
 				plist.add(pdto);
 			}
 			isOk = true;
