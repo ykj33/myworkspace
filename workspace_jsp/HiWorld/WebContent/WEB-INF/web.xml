@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name>HiWorld</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	<!-- 같은 성격의 태그끼리 모아놓는게 좋다. -->
+	<servlet>
+		<!-- url의 이름과 같은 이름으로 정의한 패턴을 찾아서 적용시킴 3. 해당 name을 가지고 있는 servlet을 찾음 -->
+		<servlet-name>mys1</servlet-name>
+		<!-- 풀 패키지명을 적어서 특정시킴 4. 해당 클래스 실행 -->
+		<servlet-class>com.naver.MyServlet1</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>cmys1</servlet-name>	
+		<servlet-class>kr.co.ca.MyServlet1</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<!-- url의 이름 정의 2. 입력받은 url 패턴의 name을 찾음 -->
+		<servlet-name>mys1</servlet-name>
+		<!-- 웹브라우저에서 인식하는 part, /가 들어가야 한다.(디렉토리 패턴) 1. 웹 브라우저에서 해당 url이 입력됨 -->
+		<url-pattern>/ms1</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>cmys1</servlet-name>
+		<url-pattern>/cms1</url-pattern>
+	</servlet-mapping>
+</web-app>
