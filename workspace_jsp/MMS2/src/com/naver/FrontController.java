@@ -45,6 +45,20 @@ public class FrontController extends HttpServlet {
 			com = new InsertCommand();
 		} else if (sp.equalsIgnoreCase("/select.do")) {
 			com = new SelectCommand();
+		} else if (sp.equalsIgnoreCase("/selectById.do")) {
+			com = new SelectByIdCommand();
+		} else if (sp.equalsIgnoreCase("/updateui.do")) {
+			com = new UpdateUICommand();
+		} else if (sp.equalsIgnoreCase("/update.do")) {
+			com = new UpdateCommand();
+		} else if (sp.equalsIgnoreCase("/delete.do")) {
+			com = new DeleteCommand();
+		} else if (sp.equalsIgnoreCase("/loginui.do")) {
+			com = new LoginUICommand();
+		} else if (sp.equalsIgnoreCase("/login.do")) {
+			com = new LoginCommand();
+		} else if(sp.equalsIgnoreCase("/logout.do")) {
+			com = new LogoutCommand();
 		}
 
 		// 정의되지 않은 접근 시 아예 실행되지 않도록.

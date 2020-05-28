@@ -11,6 +11,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import kr.co.domain.LoginDTO;
 import kr.co.domain.MemberDTO;
 
 public class MemberDAO {
@@ -65,7 +66,7 @@ public class MemberDAO {
 	public void update(MemberDTO dto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "UPDATE FROM member SET name = ?, age = ? WHERE id = ?";
+		String sql = "UPDATE member SET name = ?, age = ? WHERE id = ?";
 		try {
 			conn = dataFactory.getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -80,6 +81,33 @@ public class MemberDAO {
 		}
 	}
 
+	public MemberDTO selectById(String id) {
+		MemberDTO dto = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "SELECT * FROM member WHERE id = ?";
+		ResultSet rs = null;
+
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+
+//			!= null을 사용하면 안된다. 무조건 상자는 주기 때문
+			if (rs.next()) {
+				String name = rs.getString("name");
+				int age = rs.getInt("age");
+				dto = new MemberDTO(id, name, age);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+		return dto;
+	}
+
 	// 나중에 할 때는 selectAll보단 list로 바꾸는게 좋다.
 	public List<MemberDTO> selectAll() {
 		List<MemberDTO> list = new ArrayList<MemberDTO>();
@@ -87,7 +115,7 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		// 별칭 주기
-		String sql = "SELECT id, name 이름, age 나이 FROM member";
+		String sql = "SELECT id, name 이름, age 나이 FROM member ORDER BY id asc";
 		try {
 			conn = dataFactory.getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -127,5 +155,37 @@ public class MemberDAO {
 			closeAll(null, pstmt, conn);
 
 		}
+	}
+
+	public MemberDTO updateUI(String id) {
+		// TODO Auto-generated method stub
+//		어차피 selectById() 메소드와 같으므로 반환만 해주면된다.
+		return selectById(id);
+	}
+
+	public boolean login(LoginDTO loginDTO) {
+		boolean login = false;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "SELECT * FROM member WHERE id = ? and pw = ?";
+		ResultSet rs = null;
+
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, loginDTO.getId());
+			pstmt.setString(2, loginDTO.getPw());
+			rs = pstmt.executeQuery();
+			// 해당 아이디가 존재하는지만 알아내면 된다.
+			if (rs.next()) {
+				login = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+
+		return login;
 	}
 }

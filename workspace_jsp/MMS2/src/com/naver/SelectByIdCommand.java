@@ -1,6 +1,7 @@
 package com.naver;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,17 +10,23 @@ import javax.servlet.http.HttpServletResponse;
 import kr.co.dao.MemberDAO;
 import kr.co.domain.MemberDTO;
 
-public class UpdateUICommand implements Command {
-	// 서블릿으로 가서 UpdateCommand로 이동하도록 함
+public class SelectByIdCommand implements Command {
+
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		id는 파라미터에서 받아와야 한다.
+//		1. 클라이언트가 보내준 데이터 획득 / 가공
 		String id = request.getParameter("id");
 
+//		2. DAO 객체 만들고 해당 메소드 호출
 		MemberDAO dao = new MemberDAO();
-//		selectById()메소드를 사용해서 값을 가져오나 select를 쓰는건 이상하므로 updateUI를 새로 만들어 쓴다.
-		MemberDTO dto = dao.updateUI(id);
+		MemberDTO dto = dao.selectById(id);
+
+// 		3. 데이터 바인딩(pageContext, request, session, application)
 		request.setAttribute("dto", dto);
-		request.getRequestDispatcher("update.jsp").forward(request, response);
+		
+//		4. 포워딩(dispatcher, redirect)
+		request.getRequestDispatcher("selectById.jsp").forward(request, response);
+
 	}
+
 }
