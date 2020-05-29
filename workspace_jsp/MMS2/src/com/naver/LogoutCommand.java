@@ -11,7 +11,8 @@ import javax.websocket.Session;
 public class LogoutCommand implements Command {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		// 파라미터로 false를 넣으면 session이 없으면 없는대로 간다.
 		HttpSession session = request.getSession(false);
@@ -25,8 +26,8 @@ public class LogoutCommand implements Command {
 //			3. 바인딩 된 데이터 없애기
 //			session.removeAttribute("login");
 		}
-		response.sendRedirect("select.do");
-
+//		response.sendRedirect("select.do");
+		return new CommandAction(true, "select.do");
 	}
 
 }

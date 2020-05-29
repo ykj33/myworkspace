@@ -11,7 +11,7 @@ public class LoginUICommand implements Command {
 	@Override
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		request.getRequestDispatcher("login.jsp").forward(request, response);
+
 		return new CommandAction(false, "login.jsp");
 	}
 

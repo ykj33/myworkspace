@@ -13,7 +13,8 @@ import kr.co.domain.MemberDTO;
 
 public class DeleteCommand implements Command {
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String id = request.getParameter("id");
 
 		HttpSession session = request.getSession(false);
@@ -26,15 +27,23 @@ public class DeleteCommand implements Command {
 				if (loginDTO.getId().equals(id)) {
 					MemberDAO dao = new MemberDAO();
 					dao.delete(id);
-					response.sendRedirect("select.do");
+					// 삭제한 뒤에는 로그아웃을 시켜야한다.
+					session.invalidate();
+					
+					// 포워딩하는 코드를 찾아서 그 곳을 바꾸어준다.
+					return new CommandAction(true, "select.do");
+//					response.sendRedirect("select.do");
 				} else {
-					response.sendRedirect("loginui.do");
+					return new CommandAction(true, "loginui.do");
+//					response.sendRedirect("loginui.do");
 				}
 			} else {
-				response.sendRedirect("loginui.do");
+				return new CommandAction(true, "loginui.do");
+//				response.sendRedirect("loginui.do");
 			}
 		} else {
-			response.sendRedirect("loginui.do");
+			return new CommandAction(true, "loginui.do");
+//			response.sendRedirect("loginui.do");
 		}
 	}
 }
