@@ -54,6 +54,10 @@ public class FrontController extends HttpServlet {
 			com = new LoginUICommand();
 		} else if (sp.equalsIgnoreCase("/login.bo")) {
 			com = new LoginCommand();
+		} else if (sp.equalsIgnoreCase("/logout.bo")) {
+			com = new LogoutCommand();
+		} else if (sp.equalsIgnoreCase("/delete.bo")) {
+			com = new DeleteCommand();
 		} else {
 			System.out.println("제공하지 않는 서비스입니다.");
 		}
