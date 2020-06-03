@@ -41,4 +41,4 @@
 	<!-- '와 "가 같이 있으면 안되므로 섞어서 해주어야 한다. -->
 	<a href='${a>3?"http://www.naver.com" : "http://www.google.com" }'>hello</a>
 </body>
-</html>
+</html>	
