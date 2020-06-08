@@ -32,7 +32,12 @@
 			<c:forEach items="${list}" var="dto">
 				<tr>
 					<td>${dto.num}</td>
-					<td><a href="read.do?num=${dto.num }">${dto.title }</a></td>
+
+					<!-- 0부터 시작하면 원글도 들여쓰기가 되므로 1부터 시작한다. -->
+					<td width="300px"><c:forEach begin="1" end="${dto.repIndent }">
+					&nbsp;	&nbsp;
+					</c:forEach> <a href="read.do?num=${dto.num }">${dto.title }</a></td>
+
 					<td>${dto.writer }</td>
 					<td>${dto.writeday }</td>
 					<td>${dto.readcnt }</td>
