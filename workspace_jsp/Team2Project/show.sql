@@ -26,4 +26,8 @@ starpoint number(2) check (starpoint<=10)
 
 insert into REVIEW values (1, 'title1','content1','m001','category1', sysdate,1,1)
 commit
-select * from review
+select * from member
+
+update member set property = 'admin' where id = 'admin'
+commit
+SELECT * FROM review WHERE (title = '%?%') or (content like '%?%')

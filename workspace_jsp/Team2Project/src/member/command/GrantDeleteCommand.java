@@ -1,7 +1,6 @@
 package member.command;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,34 +12,37 @@ import member.domain.MemberDTO;
 import share.Command;
 import share.CommandAction;
 
-public class SelectCommand implements Command {
+public class GrantDeleteCommand implements Command {
 
 	@Override
 	public CommandAction execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		MemberDAO dao = new MemberDAO();
-		List<MemberDTO> list = dao.selectAll();
-		
-		request.setAttribute("list", list);
 		HttpSession session = request.getSession();
 		
 		
-		MemberDTO dto = (MemberDTO)session.getAttribute("login");
-		boolean manager = false;
-		if(dto!=null){
-		if(dto.getProperty().equals("admin")){
-			manager=true;
+		String id = request.getParameter("id");
+		
+		
+		if(session!=null) {
+			MemberDTO dto = (MemberDTO)session.getAttribute("login");
 			
-		} else if(dto.getProperty().equals("manager")) {
-			manager=true;
-		} else{
-			manager=false;
-		}}
-		request.setAttribute("manager", manager);
+			if(dto!=null) {
+				MemberDAO dao = new MemberDAO();		
+				String property = dto.getProperty();
+				dao.grantDelete(id, property);
+				
+				return new CommandAction(true, "membergrantui.do");		
+				
+			}else {
+				return new CommandAction(true, "memberselectui.do.do");
+			}
+		}else {
+			return new CommandAction(true, "memberselectui.do.do");
+		}
 		
 		
-
-		return new CommandAction(false, "memberselect.jsp");
+		
+		
 	}
 
 }
