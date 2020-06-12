@@ -13,10 +13,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div style="padding: 20px 70px 20px 70px;">
 	<h1>회원 관리</h1>
-	<p style="text-align: center">
-		<a href="memberselect.do">메인화면</a>
-	</p>
+	
+		<br><br>
+	
 	<c:if test="${admin }">
 		<h3>매니저</h3>
 		<table>
@@ -84,13 +85,15 @@
 
 
 
-	</table>
-
+	</table><br><br>
+<button type="button" class="btn btn-outline-success" onclick="location.href='reviewlist.do'">목록</button><br><br>
 
 	<script>
 		
 	</script>
-
+	<br><br><br>
+<jsp:include page="footer.jsp" />
+</div>
 </body>
 <script>
 	function grant(id, property) {
@@ -109,12 +112,13 @@
 	}
 
 	function deleteMember(id) {
-		var isOk = confirm("탈퇴시키시겠습니까?");
+		var isOk = confirm("해당 id의 모든 게시글이 삭제됩니다. 탈퇴시키시겠습니까?");
 		if (isOk == true) {
 			document.location.href = "membergrantdelete.do?id=" + id;
 		}
 		return;
 	}
+
 </script>
 
 </html>

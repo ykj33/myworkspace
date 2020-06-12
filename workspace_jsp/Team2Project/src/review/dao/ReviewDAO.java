@@ -455,4 +455,26 @@ public class ReviewDAO {
 		}
 		return list;
 	}
+	
+	//id를 넣으면 id가 작성한 게시글 전부 삭제
+	public void deleteById(String id) {
+	      Connection conn = null;
+	      PreparedStatement pstmt = null;
+	      String sql = "delete from review where id = ?";
+	      
+	      try {
+	         conn = dataFactory.getConnection();
+	         pstmt = conn.prepareStatement(sql);
+	         
+	         pstmt.setString(1, id);
+	         
+	         pstmt.executeUpdate();
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }finally {
+	         closeAll(null, pstmt, conn);
+	      }
+	      
+	   }
+
 }

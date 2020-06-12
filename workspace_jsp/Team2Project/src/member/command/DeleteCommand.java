@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import member.dao.MemberDAO;
 import member.domain.MemberDTO;
+import review.dao.ReviewDAO;
 import share.Command;
 import share.CommandAction;
 
@@ -24,8 +25,12 @@ public class DeleteCommand implements Command {
 			dto = (MemberDTO) session.getAttribute("login");			
 			if (dto != null) {
 				String id = request.getParameter("id");
+			
 				if (dto.getId().equals(id)) {
 					MemberDAO dao = new MemberDAO();
+					ReviewDAO rDao = new ReviewDAO();
+					rDao.deleteById(id);
+
 					dao.delete(id);
 					session.invalidate();
 					return new CommandAction(true, "reviewlist.do");

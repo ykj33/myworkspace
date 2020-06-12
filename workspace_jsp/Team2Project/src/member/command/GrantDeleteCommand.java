@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import member.dao.MemberDAO;
 import member.domain.MemberDTO;
+import review.dao.ReviewDAO;
 import share.Command;
 import share.CommandAction;
 
@@ -29,15 +30,17 @@ public class GrantDeleteCommand implements Command {
 			if(dto!=null) {
 				MemberDAO dao = new MemberDAO();		
 				String property = dto.getProperty();
+				ReviewDAO rDao = new ReviewDAO();
+				rDao.deleteById(id);
 				dao.grantDelete(id, property);
 				
 				return new CommandAction(true, "membergrantui.do");		
 				
 			}else {
-				return new CommandAction(true, "memberselectui.do.do");
+				return new CommandAction(true, "memberselectui.do");
 			}
 		}else {
-			return new CommandAction(true, "memberselectui.do.do");
+			return new CommandAction(true, "memberselectui.do");
 		}
 		
 		
