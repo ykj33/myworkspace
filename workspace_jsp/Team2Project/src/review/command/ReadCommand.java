@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import review.dao.ReviewDAO;
 import review.domain.ReviewDTO;
+import review.domain.UploadDTO;
 import share.Command;
 import share.CommandAction;
 
@@ -23,7 +24,10 @@ public class ReadCommand implements Command {
 		}
 		ReviewDAO dao = new ReviewDAO();
 		ReviewDTO list = dao.read(num);
+		UploadDTO upload= dao.imgSelect(num);
+		request.setAttribute("upload", upload);
 		request.setAttribute("list", list);
+		
 		return new CommandAction(false, "reviewread.jsp");
 	}
 

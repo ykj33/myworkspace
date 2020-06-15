@@ -46,8 +46,10 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	</div>
+			
 	<button type="button" class="btn btn-outline-success" onclick="location.href='reviewlist.do'">목록</button>
+	</div>
+	
 	<br><br><br><jsp:include page="footer.jsp" />
 	</div>
 </body>
