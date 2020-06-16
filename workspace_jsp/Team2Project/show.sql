@@ -37,3 +37,8 @@ num number(10) primary key,
 fileName varchar2(30),
 orgFileName varchar2(30)
 )
+
+select * from upload
+
+delete from review where num = 31
+ALTER TABLE review MODIFY (title VARCHAR2(300))

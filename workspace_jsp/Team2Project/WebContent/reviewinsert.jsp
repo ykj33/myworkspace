@@ -62,7 +62,7 @@
   </div>
   <div class="form-group">
     <label for="title">제목</label>
-    <input name="title" type="text" class="form-control" id="title" placeholder="제목을 입력하세요.">
+    <input name="title" type="text" class="form-control" id="title" placeholder="제목을 입력하세요." required="required">
   </div>
   <div class="form-group">
     <label for="content">내용</label>
