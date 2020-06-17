@@ -76,7 +76,9 @@ body {
    border-top-right-radius: 0;
 }
 </style>
-<title>Insert title here</title>
+<title>IT 제품 리뷰</title>
+<!-- 파비콘 적용 -->
+<link rel = "shorcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
    <script>

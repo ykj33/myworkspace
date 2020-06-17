@@ -42,3 +42,4 @@ select * from upload
 
 delete from review where num = 31
 ALTER TABLE review MODIFY (title VARCHAR2(300))
+ALTER TABLE review MODIFY (content VARCHAR2(4000))
