@@ -43,3 +43,19 @@ select * from upload
 delete from review where num = 31
 ALTER TABLE review MODIFY (title VARCHAR2(300))
 ALTER TABLE review MODIFY (content VARCHAR2(4000))
+
+create table free(
+fnum number(10) primary key,
+ftitle varchar2(300),
+fcontent varchar2(4000),
+id varchar2(30) references member(id),
+fwriteday date default sysdate,
+freadcnt number(10) default 0,
+repRoot number(4),
+repStep number(4),
+repIndent number(4)
+)
+
+insert into free (fnum, ftitle, fcontent, id, repRoot, repStep, repIndent) values (1,'test', 'test', 'm111', 1, 0 ,0)
+delete from free where fnum = 2
+select * from free

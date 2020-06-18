@@ -21,7 +21,7 @@
          <div class="row">
             <div class="col-lg-2" ><img alt="show.pg" src="show.jpg" style="width: 150px; height: 150px"></div>
             <div class="col-lg-4"><h4></h4><p> 명칭: 주식회사 2team | 등록번호: 경기 아51514 | 등록연월일: 2020. 6. 11 | 제호: 2team
-발행인: 홍승현 | 편집인: 홍승현 | 발행소: 강님  분당구 강남대로 331번길 8, 7층
+발행인: 홍승현 | 편집인: 홍승현 | 발행소: 강남  분당구 강남대로 331번길 8, 7층
 발행연월일: 2020 6. 11 | 전화번호: 02 - 6393 - 1111 | E-mail: clswjfgks@naver.com</p></div>
             <div class="col-lg-2"><h4 style="text-align: center;">내비게이션</h4>
                <div class="list-group">

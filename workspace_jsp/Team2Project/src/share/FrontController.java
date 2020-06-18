@@ -21,6 +21,7 @@ import review.command.ListPageCommand;
 import review.command.ReadCommand;
 import review.command.UpdateCommand;
 import review.command.UpdateUICommand;
+import review.command.UploadCommand;
 
 /**
  * Servlet implementation class FrontController
@@ -98,6 +99,18 @@ public class FrontController extends HttpServlet {
 			com = new review.command.CateSelectCommand();
 		} else if (sp.equalsIgnoreCase("/reviewupload.do")) {
 			com = new review.command.UploadCommand();
+		} else if (sp.equalsIgnoreCase("/freelist.do")) {
+			com = new free.command.listPageCommand();
+		} else if(sp.equalsIgnoreCase("/freeread.do")) {
+			com = new free.command.readCommand();
+		} else if (sp.equalsIgnoreCase("/freeinsertui.do")) {
+			com = new free.command.InsertUICommand();
+		} else if (sp.equalsIgnoreCase("/freeinsert.do")) {
+			com = new free.command.InsertCommand();
+		} else if (sp.equalsIgnoreCase("/freeupdateui.do")) {
+			com = new free.command.UpdateUICommand();
+		} else if (sp.equalsIgnoreCase("/freeupdate.do")) {
+			com = new free.command.UpdateCommand();
 		}
 
 		if (com != null) {
