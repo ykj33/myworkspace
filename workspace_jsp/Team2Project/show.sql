@@ -57,5 +57,6 @@ repIndent number(4)
 )
 
 insert into free (fnum, ftitle, fcontent, id, repRoot, repStep, repIndent) values (1,'test', 'test', 'm111', 1, 0 ,0)
-delete from free where fnum = 2
+delete from free where fnum = 5
 select * from free
+

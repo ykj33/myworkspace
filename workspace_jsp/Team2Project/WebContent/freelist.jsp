@@ -89,7 +89,10 @@
 				
 				<tr>
 					<td>${dto.fnum }</td>
-					<td><a href="freeread.do?fnum=${dto.fnum }">${dto.ftitle }</a></td>
+					<td><c:forEach begin="1" end="${dto.repIndent }">
+					ㄴ&nbsp;	&nbsp;
+					</c:forEach>
+					<a href="freeread.do?fnum=${dto.fnum }">${dto.ftitle }</a></td>
 					<td><c:choose>
 							<c:when test="${fn:length(dto.fwriteday)>10 }">
 								<c:out value="${fn:substring(dto.fwriteday,0,10)}" />
@@ -108,6 +111,30 @@
 				</c:forEach>
 			</tbody>
 		</table>
+			<div align="center">
+      
+      <ul class="pagination justify-content-center" >
+         <c:if test="${to.curPage != 1 }">
+            <li class="page-item"><a class="page-link" href="freelist.do?curPage=${(to.curPage-1) >0 ? (to.curPage-1) : 1} ">&laquo;</a></li>
+</c:if>
+
+         <c:forEach begin="${to.beginPageNum}" end="${to.stopPageNum}"
+            var="idx">
+
+            <c:if test="${to.curPage == idx }">
+               <li class="page-item active"><a class="page-link" href="freelist.do?curPage=${idx}">${idx}</a></li> 
+      </c:if>
+
+            <c:if test="${to.curPage != idx }">
+               <li class="page-item"><a class="page-link" 
+                  href="freelist.do?curPage=${idx}">${idx}</a></li> 
+      </c:if>
+
+         </c:forEach>
+         <c:if test="${to.curPage != to.totalPage}">
+            <li class="page-item"><a class="page-link"   href="freelist.do?curPage=${(to.curPage+1) < to.totalPage? (to.curPage+1) : to.totalPage }">&raquo;</a></li>
+         </c:if>
+         </ul>
 		 <div style="float: right">
       <c:if test="${!empty login}">
          <button type="button" class="btn btn-primary btn-lg"
@@ -115,7 +142,7 @@
       </c:if>
       </div>
 		   <br> <br> <br> <br>
-      
+      </div>
       <jsp:include page="footer.jsp" />
 </div>
 </body>

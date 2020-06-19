@@ -101,7 +101,7 @@ public class FrontController extends HttpServlet {
 			com = new review.command.UploadCommand();
 		} else if (sp.equalsIgnoreCase("/freelist.do")) {
 			com = new free.command.listPageCommand();
-		} else if(sp.equalsIgnoreCase("/freeread.do")) {
+		} else if (sp.equalsIgnoreCase("/freeread.do")) {
 			com = new free.command.readCommand();
 		} else if (sp.equalsIgnoreCase("/freeinsertui.do")) {
 			com = new free.command.InsertUICommand();
@@ -111,6 +111,12 @@ public class FrontController extends HttpServlet {
 			com = new free.command.UpdateUICommand();
 		} else if (sp.equalsIgnoreCase("/freeupdate.do")) {
 			com = new free.command.UpdateCommand();
+		} else if (sp.equalsIgnoreCase("/freedelete.do")) {
+			com = new free.command.DeleteCommand();
+		} else if (sp.equalsIgnoreCase("/freereplyui.do")) {
+			com = new free.command.ReplyUICommand();
+		} else if (sp.equalsIgnoreCase("/freereply.do")) {
+			com = new free.command.ReplyCommand();
 		}
 
 		if (com != null) {

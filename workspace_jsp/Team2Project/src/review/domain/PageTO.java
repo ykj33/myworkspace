@@ -2,6 +2,8 @@ package review.domain;
 
 import java.util.List;
 
+import free.domain.FreeDTO;
+
 public class PageTO {
 	private int curPage = 1;	
 	private int perPage = 10;	

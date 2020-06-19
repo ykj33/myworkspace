@@ -76,7 +76,8 @@
 				onclick="location.href='freedelete.do?fnum=${read.fnum }&id=${read.id }'">삭제</button>
 
 		</c:if>
-		
+		<button type="button" class="btn btn-outline-success"
+			onclick="location.href='freereplyui.do?fnum=${read.fnum}'">답글</button>
 		<button type="button" class="btn btn-outline-success"
 			onclick="location.href='freelist.do'">목록</button>
 
