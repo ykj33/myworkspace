@@ -25,7 +25,12 @@ public class listPageCommand implements Command {
 		}
 		FreeDAO dao = new FreeDAO();
 		PageTO to = dao.page(curPage);
-		request.setAttribute("list", to.getList());
+		// 내용출력을 위한 바인딩
+		request.setAttribute("list", to.getFreelist());
+		// 페이징처리를 위한 바인딩
+		request.setAttribute("to", to);
+//		List<FreeDTO> list = dao.selectAll();
+//		request.setAttribute("list", list);
 		return new CommandAction(false, "freelist.jsp");
 	}
 

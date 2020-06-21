@@ -16,6 +16,7 @@ public class PageTO {
 	private int stopPageNum;
 	
 	private List<ReviewDTO> list;
+	private List<FreeDTO> freelist;
 	
 	public PageTO() {
 		changeVarVal();
@@ -25,6 +26,14 @@ public class PageTO {
 		super();
 		this.curPage = curPage;
 		changeVarVal();
+	}
+
+	public List<FreeDTO> getFreelist() {
+		return freelist;
+	}
+
+	public void setFreelist(List<FreeDTO> freelist) {
+		this.freelist = freelist;
 	}
 
 	public int getCurPage() {
@@ -110,6 +119,7 @@ public class PageTO {
 	public void setList(List<ReviewDTO> list) {
 		this.list = list;
 	}
+	
 	
 	private void changeVarVal() {
 		

@@ -299,8 +299,7 @@ public class FreeDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from (" + "select rownum rnum, fnum, ftitle, id, fwriteday, readcnt, from ("
-				+ "select * from free order by fnum desc)) " + "where rnum>=? and rnum<=?";
+		String sql = "select * from (select rownum rnum, fnum, ftitle, id, fwriteday, freadcnt from (select * from free order by fnum desc))where rnum>=? and rnum<=?";
 		try {
 			conn = dataFactory.getConnection();
 			int amount = getAmount(conn);
@@ -314,24 +313,25 @@ public class FreeDAO {
 				String ftitle = rs.getString("ftitle");
 				String id = rs.getString("id");
 				String fwriteday = rs.getString("fwriteday");
-				int readcnt = rs.getInt("readcnt");
+				int freadcnt = rs.getInt("freadcnt");
 
-				FreeDTO dto = new FreeDTO(fnum, ftitle, null, id, fwriteday, 0, 0, 0, 0);
+
+				FreeDTO dto = new FreeDTO(fnum, ftitle, null, id, fwriteday, freadcnt, 0, 0, 0);
 				list.add(dto);
 			}
-//			to.setList(list);
+			to.setFreelist(list);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			closeAll(rs, pstmt, conn);
 		}
-		return null;
+		return to;
 	}
 
 	private int getAmount(Connection conn) {
 		int amount = 0;
 		PreparedStatement pstmt = null;
-		String sql = "SELECT count(num) FROM free";
+		String sql = "SELECT count(fnum) FROM free";
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(sql);

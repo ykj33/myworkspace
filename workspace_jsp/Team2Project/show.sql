@@ -56,7 +56,11 @@ repStep number(4),
 repIndent number(4)
 )
 
-insert into free (fnum, ftitle, fcontent, id, repRoot, repStep, repIndent) values (1,'test', 'test', 'm111', 1, 0 ,0)
+insert into free (fnum, ftitle, fcontent, id, repRoot, repStep, repIndent) values (1,'test', 'test', 'm001', 1, 0 ,0)
 delete from free where fnum = 5
 select * from free
 
+commit
+
+select * from (select rownum rnum, fnum, ftitle, id, fwriteday from (select * from free order by fnum desc))where rnum>=1 and rnum<=1
+SELECT count(fnum) FROM free
