@@ -57,7 +57,7 @@
 				<td>별점 : ${list.starpoint }
 			</tr>
 		</table>
-
+	
 
 		<%-- 
 		<table class="table table-striped">

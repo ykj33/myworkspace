@@ -15,6 +15,7 @@ import javax.sql.DataSource;
 import free.domain.FreeDTO;
 import review.domain.PageTO;
 import review.domain.ReviewDTO;
+import review.domain.UploadDTO;
 import sun.font.CreatedFontTracker;
 
 public class FreeDAO {
@@ -147,6 +148,60 @@ public class FreeDAO {
 		}
 	}
 
+	// 파일업로드
+	public void insert(FreeDTO freeDTO, free.domain.UploadDTO uploadDTO) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "INSERT into free (fnum, ftitle, fcontent, id, repRoot) VALUES (?, ?, ?, ?,?)";
+		boolean isOk = false;
+		try {
+			conn = dataFactory.getConnection();
+			conn.setAutoCommit(false);
+			pstmt = conn.prepareStatement(sql);
+
+			upload(conn,
+					new free.domain.UploadDTO(uploadDTO.getFileName(), uploadDTO.getOrgFileName(), increaseFnum(conn)));
+
+			pstmt.setInt(1, increaseFnum(conn));
+			pstmt.setString(2, freeDTO.getFtitle());
+			pstmt.setString(3, freeDTO.getFcontent());
+			pstmt.setString(4, freeDTO.getId());
+			pstmt.setInt(5, increaseFnum(conn));
+			pstmt.executeUpdate();
+			isOk = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (isOk) {
+					conn.commit();
+				} else {
+					conn.rollback();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			closeAll(null, pstmt, conn);
+		}
+	}
+
+	private void upload(Connection conn, free.domain.UploadDTO uplodDTO) {
+		PreparedStatement pstmt = null;
+		String sql = "INSERT INTO freeupload (fnum, fileName, orgFileName) values(?,?,?)";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, uplodDTO.getFnum());
+			pstmt.setString(2, uplodDTO.getFileName());
+			pstmt.setString(3, uplodDTO.getOrgFileName());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(null, pstmt, null);
+		}
+
+	}
+
 	// fnum값 자동 증가
 	private int increaseFnum(Connection conn) {
 		PreparedStatement pstmt = null;
@@ -200,23 +255,54 @@ public class FreeDAO {
 		return list;
 	}
 
-	public void update(FreeDTO freeDTO) {
+	public void update(FreeDTO freeDTO, free.domain.UploadDTO uploadDTO) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = "UPDATE free SET ftitle = ?, fcontent = ? WHERE fnum = ?";
+		boolean isOk = false;
 		try {
 			conn = dataFactory.getConnection();
+			conn.setAutoCommit(false);
 			pstmt = conn.prepareStatement(sql);
+			if (uploadDTO.getFileName() != null) {
+				uploadDelete(conn, freeDTO.getFnum());
+				upload(conn, new free.domain.UploadDTO(uploadDTO.getFileName(), uploadDTO.getOrgFileName(),
+						freeDTO.getFnum()));
+			}
 			pstmt.setString(1, freeDTO.getFtitle());
 			pstmt.setString(2, freeDTO.getFcontent());
 			pstmt.setInt(3, freeDTO.getFnum());
 			pstmt.executeUpdate();
+			isOk = true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			try {
+				if (isOk) {
+					conn.commit();
+				} else {
+					conn.rollback();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 			closeAll(null, pstmt, conn);
 		}
 
+	}
+
+	private void uploadDelete(Connection conn, int fnum) {
+		PreparedStatement pstmt = null;
+		String sql = "DELETE FROM freeupload WHERE fnum = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, fnum);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(null, pstmt, null);
+		}
 	}
 
 	// 삭제
@@ -315,7 +401,6 @@ public class FreeDAO {
 				String fwriteday = rs.getString("fwriteday");
 				int freadcnt = rs.getInt("freadcnt");
 
-
 				FreeDTO dto = new FreeDTO(fnum, ftitle, null, id, fwriteday, freadcnt, 0, 0, 0);
 				list.add(dto);
 			}
@@ -345,6 +430,32 @@ public class FreeDAO {
 			closeAll(rs, pstmt, null);
 		}
 		return amount;
+	}
+
+	public free.domain.UploadDTO imgSelect(int fnum) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		free.domain.UploadDTO dto = null;
+		String sql = "SELECT fileName, orgFileName FROM freeupload WHERE fnum = ?";
+		try {
+			conn = dataFactory.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, fnum);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				String fileName = rs.getString(1);
+				String orgFileName = rs.getString(2);
+				dto = new free.domain.UploadDTO(fileName, orgFileName, fnum);
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeAll(rs, pstmt, conn);
+		}
+		return dto;
 	}
 
 }

@@ -7,6 +7,7 @@
 	<a href="reviewlist.do"><img alt="IT 제품 리뷰" src="logo.png" ></a>
 	<div style="width: 100%;">
 		<div style="display: inline; float: left">
+		
 	 <c:if test="${category=='컴퓨터' }">
             <button type="button" class="btn btn-danger btn-lg"
                onclick="location.href='reviewcateselect.do?category=컴퓨터'">컴퓨터</button>

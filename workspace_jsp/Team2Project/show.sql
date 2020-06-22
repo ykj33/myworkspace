@@ -64,3 +64,22 @@ commit
 
 select * from (select rownum rnum, fnum, ftitle, id, fwriteday from (select * from free order by fnum desc))where rnum>=1 and rnum<=1
 SELECT count(fnum) FROM free
+
+create table freeupload(
+fnum number(10) primary key,
+fileName varchar2(30),
+orgFileName varchar2(30)
+)
+
+select * from freeupload
+
+create table reviewcomment(
+rnum number(10) primary key,
+num number(10) references review(num),
+id varchar2(30) references member(id),
+reviewcomment varchar2(4000)	
+)
+
+insert into reviewcomment (rnum, num, id, reviewcomment) values (1, 41, 'm001' , 'comment')
+
+drop table freeupload

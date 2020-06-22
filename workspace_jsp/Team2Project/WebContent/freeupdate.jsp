@@ -18,7 +18,7 @@
 		<jsp:include page="header.jsp" />
 		<h1>글쓰기</h1>
 
-		<form action="freeupdate.do?fnum=${list.fnum }" method="post">
+		<form action="freeupdate.do?fnum=${list.fnum }" method="post" enctype="multipart/form-data">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="id">작성자</label> <input name="id" type="text"

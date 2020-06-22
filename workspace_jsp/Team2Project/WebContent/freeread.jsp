@@ -19,8 +19,9 @@
 
 		<h1>상세 보기</h1>
 		<div style="text-align: center;">
-			<img alt="" src="upload/${upload.fileName }"
+			<img alt="사진" src="upload/free/${upload.fileName }"
 				style="width: auto; height: auto; max-height: 400px; max-width: 600px;"><br>
+				
 		</div>
 
 
@@ -55,14 +56,12 @@
 			</svg>&nbsp; ${read.freadcnt }
 			</tr>
 		</table>
-		<table class="table table-bordered">
+			<table class="table table-bordered">
 			<tr>
-				<td><div style="min-height: 200px; font-size: 20px;">
-						<%-- ${list.content } --%>
-						<pre>
-							<c:out value="${read.fcontent}" />
-						</pre>
-					</div>
+				<td><div style="min-height: 200px; font-size: 20px;"><%-- ${list.content } --%>
+				<pre><c:out value="${read.fcontent}" /></pre></div>
+
+
 			</tr>
 		</table>
 		<c:if test="${sessionScope.login.id.equals(read.id) }">

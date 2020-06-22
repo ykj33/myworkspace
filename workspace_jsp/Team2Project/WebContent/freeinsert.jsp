@@ -19,7 +19,7 @@
 		<jsp:include page="header.jsp" />
 		<h1>글쓰기</h1>
 
-		<form action="freeinsert.do" method="post">
+		<form action="freeupload.do" method="post" enctype="multipart/form-data">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="id">작성자</label> <input name="id" type="text"

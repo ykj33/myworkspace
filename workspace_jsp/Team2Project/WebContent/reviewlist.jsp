@@ -49,8 +49,8 @@
 			test="${login.property.equals('admin')||login.property.equals('manager') }">
 			<button onclick="location.href='membergrantui.do'">회원 관리</button>
 		</c:if> --%>
-		<br><br>
-		
+		<h1>리뷰게시판&nbsp;<button type="button" class="btn btn-info"
+            onclick="location.href='freelist.do'">자유게시판</button></h1>
 		<table class="table table-striped">
 		 <colgroup>
             <c:if
