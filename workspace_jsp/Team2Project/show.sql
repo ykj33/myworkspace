@@ -83,3 +83,5 @@ reviewcomment varchar2(4000)
 insert into reviewcomment (rnum, num, id, reviewcomment) values (1, 41, 'm001' , 'comment')
 
 drop table freeupload
+
+delete from free

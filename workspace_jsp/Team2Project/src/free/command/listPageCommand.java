@@ -31,6 +31,7 @@ public class listPageCommand implements Command {
 		request.setAttribute("to", to);
 //		List<FreeDTO> list = dao.selectAll();
 //		request.setAttribute("list", list);
+		
 		return new CommandAction(false, "freelist.jsp");
 	}
 

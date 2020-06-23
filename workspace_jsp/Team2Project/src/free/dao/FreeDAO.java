@@ -152,7 +152,7 @@ public class FreeDAO {
 	public void insert(FreeDTO freeDTO, free.domain.UploadDTO uploadDTO) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT into free (fnum, ftitle, fcontent, id, repRoot) VALUES (?, ?, ?, ?,?)";
+		String sql = "INSERT into free (fnum, ftitle, fcontent, id, repRoot, repStep, repIndent) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		boolean isOk = false;
 		try {
 			conn = dataFactory.getConnection();
@@ -167,6 +167,8 @@ public class FreeDAO {
 			pstmt.setString(3, freeDTO.getFcontent());
 			pstmt.setString(4, freeDTO.getId());
 			pstmt.setInt(5, increaseFnum(conn));
+			pstmt.setInt(6, 0);
+			pstmt.setInt(7, 0);
 			pstmt.executeUpdate();
 			isOk = true;
 		} catch (Exception e) {
@@ -361,7 +363,46 @@ public class FreeDAO {
 		}
 
 	}
+	public void reply(int orgFnum, FreeDTO freeDTO, free.domain.UploadDTO uploadDTO) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "INSERT into free (fnum, ftitle, fcontent, id, repRoot, repStep, repIndent) VALUES (?, ?, ?, ?, ?, ?, ?)";
+		boolean isOk = false;
+		try {
+			conn = dataFactory.getConnection();
+			conn.setAutoCommit(false);
+			upload(conn,
+					new free.domain.UploadDTO(uploadDTO.getFileName(), uploadDTO.getOrgFileName(), increaseFnum(conn)));
+			int num = increaseFnum(conn);
+			FreeDTO orgDTO = selectByFnum(orgFnum);
+			stepPlus(conn, freeDTO);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.setString(2, freeDTO.getFtitle());
+			pstmt.setString(3, freeDTO.getFcontent());
+			pstmt.setString(4, freeDTO.getId());
+			pstmt.setInt(5, orgDTO.getRepRoot());
+			pstmt.setInt(6, orgDTO.getRepStep() + 1);
+			pstmt.setInt(7, orgDTO.getRepIndent() + 1);
 
+			pstmt.executeUpdate();
+			isOk = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (isOk) {
+					conn.commit();
+				} else {
+					conn.rollback();
+				}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			closeAll(null, pstmt, conn);
+		}
+
+	}
 	private void stepPlus(Connection conn, FreeDTO freeDTO) {
 		PreparedStatement pstmt = null;
 		String sql = "UPDATE free SET repStep = repStep + 1 WHERE repRoot = ? and repStep >?";
@@ -385,7 +426,7 @@ public class FreeDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select * from (select rownum rnum, fnum, ftitle, id, fwriteday, freadcnt from (select * from free order by fnum desc))where rnum>=? and rnum<=?";
+		String sql = "SELECT * FROM (select rownum rnum, fnum, ftitle, id, fwriteday, freadcnt, repRoot, repStep, repIndent FROM (SELECT * FROM free ORDER BY fnum DESC)) WHERE rnum>=? AND rnum<=? ORDER BY repRoot DESC, repStep ASC";
 		try {
 			conn = dataFactory.getConnection();
 			int amount = getAmount(conn);
@@ -400,9 +441,15 @@ public class FreeDAO {
 				String id = rs.getString("id");
 				String fwriteday = rs.getString("fwriteday");
 				int freadcnt = rs.getInt("freadcnt");
+				int repRoot = rs.getInt("repRoot");
+				int repStep = rs.getInt("repStep");
+				int repIndent = rs.getInt("repIndent");
 
-				FreeDTO dto = new FreeDTO(fnum, ftitle, null, id, fwriteday, freadcnt, 0, 0, 0);
+				FreeDTO dto = new FreeDTO(fnum, ftitle, null, id, fwriteday, freadcnt, repRoot, repStep, repIndent);
 				list.add(dto);
+				if(imgSelect(fnum) != null) {
+					boolean isFile = true;
+				}
 			}
 			to.setFreelist(list);
 		} catch (Exception e) {

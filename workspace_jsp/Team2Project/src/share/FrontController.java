@@ -119,6 +119,8 @@ public class FrontController extends HttpServlet {
 			com = new free.command.ReplyCommand();
 		} else if (sp.equalsIgnoreCase("/freeupload.do")) {
 			com = new free.command.UploadCommand();
+		} else if (sp.equalsIgnoreCase("/freemanagerdelete.do")) {
+			com = new free.command.ManagerDeleteCommand();
 		} 
 
 		if (com != null) {

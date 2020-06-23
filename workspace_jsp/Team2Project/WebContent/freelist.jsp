@@ -93,7 +93,10 @@
 					<td><c:forEach begin="1" end="${dto.repIndent }">
 					ㄴ&nbsp;	&nbsp;
 					</c:forEach>
-					<a href="freeread.do?fnum=${dto.fnum }">${dto.ftitle }</a></td>
+					<a href="freeread.do?fnum=${dto.fnum }">${dto.ftitle }</a>
+					<c:if test="${param.file}"><c:out value="존재"></c:out>
+					</c:if>
+					</td>
 					<td><c:choose>
 							<c:when test="${fn:length(dto.fwriteday)>10 }">
 								<c:out value="${fn:substring(dto.fwriteday,0,10)}" />
@@ -104,7 +107,7 @@
 					<c:if
 						test="${login.property.equals('admin')||login.property.equals('manager') }">
 						<td>
-							<button onclick="managerdelete('${dto.fnum}')">글 삭제</button>
+							<button onclick="location.href='freemanagerdelete.do?fnum=${dto.fnum}'">글 삭제</button>
 						</td>
 					</c:if>
 				</tr>

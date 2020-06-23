@@ -19,9 +19,9 @@
 
 		<h1>상세 보기</h1>
 		<div style="text-align: center;">
-			<img alt="사진" src="upload/free/${upload.fileName }"
+			<img alt="" src="upload/free/${upload.fileName }"
 				style="width: auto; height: auto; max-height: 400px; max-width: 600px;"><br>
-				
+
 		</div>
 
 
@@ -56,7 +56,7 @@
 			</svg>&nbsp; ${read.freadcnt }
 			</tr>
 		</table>
-			<table class="table table-bordered">
+		<table class="table table-bordered">
 			<tr>
 				<td><div style="min-height: 200px; font-size: 20px;"><%-- ${list.content } --%>
 				<pre><c:out value="${read.fcontent}" /></pre></div>
@@ -75,8 +75,11 @@
 				onclick="location.href='freedelete.do?fnum=${read.fnum }&id=${read.id }'">삭제</button>
 
 		</c:if>
-		<button type="button" class="btn btn-outline-success"
-			onclick="location.href='freereplyui.do?fnum=${read.fnum}'">답글</button>
+		<c:if
+			test="${sessionScope.login.id.equals(read.id) || (login.property.equals('admin') || login.property.equals('manager')) }">
+			<button type="button" class="btn btn-outline-success"
+				onclick="location.href='freereplyui.do?fnum=${read.fnum}'">답글</button>
+		</c:if>
 		<button type="button" class="btn btn-outline-success"
 			onclick="location.href='freelist.do'">목록</button>
 
