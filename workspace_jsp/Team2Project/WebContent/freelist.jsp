@@ -119,7 +119,10 @@
       
       <ul class="pagination justify-content-center" >
          <c:if test="${to.curPage != 1 }">
-            <li class="page-item"><a class="page-link" href="freelist.do?curPage=${(to.curPage-1) >0 ? (to.curPage-1) : 1} ">&laquo;</a></li>
+            <li class="page-item"><a class="page-link" href="freelist.do?curPage=${(to.curPage-1) >0 ? (to.beginPageNum) : 1} ">&laquo;</a></li>
+</c:if>
+ <c:if test="${to.curPage != 1 }">
+            <li class="page-item"><a class="page-link" href="freelist.do?curPage=${(to.curPage-1) >0 ? (to.curPage-1) : 1} ">&lt;</a></li>
 </c:if>
 
          <c:forEach begin="${to.beginPageNum}" end="${to.stopPageNum}"
@@ -136,7 +139,10 @@
 
          </c:forEach>
          <c:if test="${to.curPage != to.totalPage}">
-            <li class="page-item"><a class="page-link"   href="freelist.do?curPage=${(to.curPage+1) < to.totalPage? (to.curPage+1) : to.totalPage }">&raquo;</a></li>
+            <li class="page-item"><a class="page-link"   href="freelist.do?curPage=${(to.curPage+1) < to.totalPage? (to.curPage+1) : to.totalPage }">&gt;</a></li>
+         </c:if>
+         <c:if test="${to.curPage != to.totalPage}">
+            <li class="page-item"><a class="page-link"   href="freelist.do?curPage=${(to.curPage+1) < to.totalPage? (to.stopPageNum) : to.totalPage }">&raquo;</a></li>
          </c:if>
          </ul>
 		 <div style="float: right">

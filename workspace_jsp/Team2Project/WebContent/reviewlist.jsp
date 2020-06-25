@@ -141,8 +141,11 @@
 		<div align="center">
       
       <ul class="pagination justify-content-center" >
+      <c:if test="${to.curPage != 1 }">
+            <li class="page-item"><a class="page-link" href="reviewlist.do?curPage=${(to.curPage-1) >0 ? (to.beginPageNum) : 1} ">&laquo;</a></li>
+</c:if>
          <c:if test="${to.curPage != 1 }">
-            <li class="page-item"><a class="page-link" href="reviewlist.do?curPage=${(to.curPage-1) >0 ? (to.curPage-1) : 1} ">&laquo;</a></li>
+            <li class="page-item"><a class="page-link" href="reviewlist.do?curPage=${(to.curPage-1) >0 ? (to.curPage-1) : 1} ">&lt;</a></li>
 </c:if>
 
          <c:forEach begin="${to.beginPageNum}" end="${to.stopPageNum}"
@@ -159,7 +162,10 @@
 
          </c:forEach>
          <c:if test="${to.curPage != to.totalPage}">
-            <li class="page-item"><a class="page-link"   href="reviewlist.do?curPage=${(to.curPage+1) < to.totalPage? (to.curPage+1) : to.totalPage }">&raquo;</a></li>
+            <li class="page-item"><a class="page-link"   href="reviewlist.do?curPage=${(to.curPage+1) < to.totalPage? (to.curPage+1) : to.totalPage }">&gt;</a></li>
+         </c:if>
+         <c:if test="${to.curPage != to.totalPage}">
+            <li class="page-item"><a class="page-link"   href="reviewlist.do?curPage=${(to.curPage+1) < to.totalPage? (to.stopPageNum) : to.totalPage }">&raquo;</a></li>
          </c:if>
          </ul>
 
@@ -170,15 +176,16 @@
             onclick="location.href='reviewinsertui.do'">글쓰기</button>
       </c:if>
       </div>
-      
+      <div class = cumstom-select>
          <form action="reviewsearch.do" method="get">
-            <select name="category">
+            <select class = "custom-select" name="category" style="width : 120px;">
                <option value="title">제목</option>
                <option value="id">글쓴이</option>
                <option value="titlecontent">제목 + 내용</option>
-            </select> <input name="search" required> <input type=submit
+            </select> <input name="search" required style="width : 300px; display : inline"> <input type=submit
                value="검색">
          </form>
+         </div>
       </div>
       
       <br> <br> <br> <br>
