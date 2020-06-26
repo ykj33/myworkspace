@@ -109,8 +109,9 @@ public class MemberDAO {
 				String id = rs.getString("id");
 				String pw = rs.getString("pw");
 				String name = rs.getString("name");
+				String property = rs.getString("property");
 
-				list.add(new MemberDTO(id, name, pw, null));
+				list.add(new MemberDTO(id, name, pw, property));
 			}
 
 		} catch (Exception e) {

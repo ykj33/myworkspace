@@ -85,3 +85,5 @@ insert into reviewcomment (rnum, num, id, reviewcomment) values (1, 41, 'm001' ,
 drop table freeupload
 
 delete from free
+
+select * from member
