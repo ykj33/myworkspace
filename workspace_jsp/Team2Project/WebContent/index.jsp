@@ -10,6 +10,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:forward page="reviewlist.do"></jsp:forward>
+<jsp:forward page="main.do"></jsp:forward>
 </body>
 </html>

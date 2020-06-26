@@ -22,7 +22,7 @@
 <link rel = "shorcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-<div style="padding: 20px 70px 0px 70px;">
+<div style="padding: 20px 320px 0px 320px;">
 		<jsp:include page="header.jsp" />
 <h1>자유게시판&nbsp;<button type="button" class="btn btn-info"
             onclick="location.href='reviewlist.do'">리뷰게시판</button></h1>
@@ -94,8 +94,6 @@
 					ㄴ&nbsp;	&nbsp;
 					</c:forEach>
 					<a href="freeread.do?fnum=${dto.fnum }">${dto.ftitle }</a>
-					<c:if test="${param.file}"><c:out value="존재"></c:out>
-					</c:if>
 					</td>
 					<td><c:choose>
 							<c:when test="${fn:length(dto.fwriteday)>10 }">

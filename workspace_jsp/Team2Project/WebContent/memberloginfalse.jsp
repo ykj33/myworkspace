@@ -12,7 +12,7 @@
 <link rel = "shorcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-<div style="padding: 20px 70px 0px 70px;">
+<div style="padding: 20px 320px 0px 320px;">
 <h1>아이디나 비밀번호가 틀렸습니다.</h1><br>
 
 

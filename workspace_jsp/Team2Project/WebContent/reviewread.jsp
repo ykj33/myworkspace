@@ -14,7 +14,7 @@
 <link rel = "shorcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-	<div style="padding: 20px 70px 0px 70px;">
+<div style="padding: 20px 320px 0px 320px;">
 		<jsp:include page="header.jsp" />
 
 		<h1>상세 보기</h1>

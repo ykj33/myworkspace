@@ -121,7 +121,12 @@ public class FrontController extends HttpServlet {
 			com = new free.command.UploadCommand();
 		} else if (sp.equalsIgnoreCase("/freemanagerdelete.do")) {
 			com = new free.command.ManagerDeleteCommand();
+		} else if (sp.equalsIgnoreCase("/main.do")) {
+			com = new review.command.MainCommand();
+		} else if (sp.equalsIgnoreCase("/download.do")) {
+			com = new member.command.DownloadCommand();
 		} 
+
 
 		if (com != null) {
 			CommandAction action = com.execute(request, response);

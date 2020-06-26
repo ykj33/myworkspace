@@ -22,7 +22,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div style="padding: 20px 70px 0px 70px;">
+<div style="padding: 20px 320px 0px 320px;">
 		<jsp:include page="header.jsp" />
 		<h1>리뷰 수정</h1>
 		<form action="reviewupdate.do?num=${dto.num }" method="post"

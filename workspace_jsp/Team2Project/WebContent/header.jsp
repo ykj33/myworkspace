@@ -4,7 +4,7 @@
 
 <header>
 
-	<a href="reviewlist.do"><img alt="IT 제품 리뷰" src="logo.png" ></a>
+	<a href="main.do"><img alt="IT 제품 리뷰" src="logo.png" ></a>
 	<div style="width: 100%;">
 		<div style="display: inline; float: left">
 		

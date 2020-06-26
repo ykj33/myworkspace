@@ -161,7 +161,7 @@ mark {
 </style>
 </head>
 <body>
-	<div style="padding: 20px 70px 0px 70px;">
+<div style="padding: 20px 320px 0px 320px;">
 		<jsp:include page="header.jsp" />
 		<%-- <h2>회원 정보 자세히 보기</h2>
 
