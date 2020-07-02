@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace로 호출할 때 헷갈림을 제거한다. 하나의 폴더 역할 -->
+<mapper namespace="d.e.p">
+
+	<insert id="insert">
+		INSERT INTO depart (did, dname) VALUES (#{did},
+		#{dname})
+	</insert>
+
+	<select id="list" resultType="DepartDTO">
+		SELECT * FROM depart
+	</select>
+	<select id="read" resultType="DepartDTO">
+		SELECT * FROM depart WHERE did =
+		#{did}
+	</select>
+	<select id="updateui" resultType="DepartDTO">
+		SELECT * FROM depart WHERE did
+		= #{did}
+	</select>
+	<update id="update">
+		UPDATE depart SET dname = #{dname} WHERE did = #{did}
+	</update>
+	<delete id="delete">
+		DELETE FROM depart WHERE did = #{did}
+	</delete>
+</mapper>
