@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace로 호출할 때 헷갈림을 제거한다. 하나의 폴더 역할 -->
+<mapper namespace="b.o.a">
+
+	<select id="getBno" resultType="Integer">
+		<!-- 가장 큰 값을 뽑아서 최신 글에 bno 넣어주기 -->
+		SELECT max(bno) FROM board
+	</select>
+
+	<insert id="insert">
+		INSERT INTO board (bno, title, content, writer)
+		VALUES (#{bno}, #{title}, #{content}, #{writer})
+	</insert>
+
+	<select id="list" resultType="BoardVO">
+		SELECT * FROM board ORDER BY bno
+		DESC
+	</select>
+
+	<select id="read" resultType="BoardVO">
+		SELECT * FROM board WHERE bno =
+		#{bno}
+	</select>
+
+	<update id="increaseViewcnt">
+		UPDATE board SET viewcnt = viewcnt + 1 WHERE bno =
+		#{bno}
+	</update>
+
+	<select id="updateUI" resultType="BoardVO">
+		SELECT * FROM board WHERE bno =
+		#{bno}
+	</select>
+
+	<update id="update">
+		<!-- updateDate를 sysDate로 현재 시각으로 바꿔야 한다. -->
+		UPDATE board SET title = #{title}, writer = #{writer}, content =
+		#{content}, updateDate = sysdate
+		WHERE bno = #{bno}
+	</update>
+	<delete id="delete">
+		DELETE FROM board WHERE bno = #{bno}
+	</delete>
+</mapper>
