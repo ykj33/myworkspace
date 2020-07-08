@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace로 호출할 때 헷갈림을 제거한다. 하나의 폴더 역할 -->
+<mapper namespace="b.o.a">
+
+	<select id="getBno" resultType="Integer">
+		<!-- 가장 큰 값을 뽑아서 최신 글에 bno 넣어주기 -->
+		<![CDATA[
+		SELECT max(bno) FROM board]]>
+	</select>
+
+	<insert id="insert">
+	<![CDATA[
+		INSERT INTO board (bno, title, content, writer)
+		VALUES (#{bno}, #{title}, #{content}, #{writer})]]>
+	</insert>
+
+	<select id="list" resultType="BoardVO">
+		<![CDATA[SELECT * FROM board ORDER BY bno
+		DESC]]>
+	</select>
+
+	<select id="read" resultType="BoardVO">
+		<![CDATA[SELECT * FROM board WHERE bno =
+		#{bno}]]>
+	</select>
+
+	<update id="increaseViewcnt">
+		<![CDATA[UPDATE board SET viewcnt = viewcnt + 1 WHERE bno =
+		#{bno}]]>
+	</update>
+
+	<select id="updateUI" resultType="BoardVO">
+		<![CDATA[SELECT * FROM board WHERE bno =
+		#{bno}]]>
+	</select>
+
+	<update id="update">
+		<!-- updateDate를 sysDate로 현재 시각으로 바꿔야 한다. -->
+		<![CDATA[UPDATE board SET title = #{title}, writer = #{writer}, content =
+		#{content}, updateDate = sysdate
+		WHERE bno = #{bno}]]>
+	</update>
+	<delete id="delete">
+		<![CDATA[DELETE FROM board WHERE bno = #{bno}]]>
+	</delete>
+
+	<!-- 게시글 총량 구하기 -->
+	<select id="getAmount" resultType="Integer">
+	<![CDATA[	SELECT count(bno) FROM board]]>
+	</select>
+
+	<!-- 보안상의 문제로 인해 권장되지 않는다. -->
+	<select id="searchlist2" resultType="BoardVO">
+		<!-- 소문자로 감싸주면 대소문자가 다 나온다. -->
+	<![CDATA[	SELECT * FROM board WHERE lower(${searchType}) LIKE
+		'%'||lower(#{keyword})||'%']]>
+	</select>
+
+	<!-- 가능하면 이 방법을 사용하자 -->
+	<sql id="search"> <!-- 인클루드와 비슷하다. -->
+		<if test="searchType != null">
+			<if test="searchType == 'writer'.toString()">
+				WHERE lower(writer) LIKE '%'||lower(#{keyword})||'%'
+			</if>
+			<if test="searchType == 'title'.toString()">
+				WHERE lower(title) LIKE '%'||lower(#{keyword})||'%'
+			</if>
+			<if test="searchType == 'content'.toString()">
+				WHERE lower(content) LIKE '%'||lower(#{keyword})||'%'
+			</if>
+		</if>
+	</sql>
+
+	<select id="searchlist" resultType="BoardVO">
+		<!-- 인클루드 시켜 사용한다. -->
+		SELECT * FROM board	<include refid="search"></include>
+	</select>
+
+	<!-- CDATA를 넣으면 중간에 멈추지 않고 무조건 sql문을 다 읽은 뒤 실행시킨다. -->
+	<select id="test" resultType="BoardVO">
+	<![CDATA[
+	select rownum rnum, bno, title, content, writer, viewcnt from (select * from board ]]>
+		<include refid="search"></include>
+	<![CDATA[
+	order by bno desc)) where rnum between #{starNum} and #{endNum} ]]>
+	</select>
+
+</mapper>
