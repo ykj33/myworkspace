@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+	<!-- 하나의 패키지에 같은 이름이 여러개일 수 없으므로 패키지를 선언하면 다른 것들은 그냥 이름만 선언해주면 된다. -->
+		<package name="kr.co.domain" />
+
+	</typeAliases>
+</configuration>
