@@ -79,6 +79,8 @@ public class UploadAjaxController {
 	@ResponseBody
 	@RequestMapping(value = "/displayfile", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> displayfile(String filename) {
+		// 저장은 &로 되어 있으나 filename으로는 __________로 되어 있으므로 다시 &로 바꾸어 주어야 함
+		filename = filename.replaceAll("________________", "&");
 		ResponseEntity<byte[]> entity = null;
 		InputStream in = null;
 		try {

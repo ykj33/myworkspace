@@ -152,29 +152,28 @@
 			// 이젠 result가 아니라 arr[i]
 			$.getJSON("/getAttach/"+bno, function(arr){
 				for(var i = 0; i<arr.length; i++) {
-					if(arr[i] != null) {
+						// 파일 이름에 &가 들어가게 되면 브라우저에서 인식하지 못하므로 저장 시 ______로 대체
+						arr[i] = arr[i].replace('&','________________');
 						console.log(arr[i])
 				var str = '<li class = "col-xs-4">';
 				str += '<a href="/displayfile?filename='+ getImageLink(arr[i]) +'">';
 				if(checkImage(arr[i])) {
-						str += '<img src ="/displayfile?filename='+arr[i]+'" />'; //썸네일의 결과가 들어감
+					str += '<img src ="/displayfile?filename='+arr[i]+'" />'; //썸네일의 결과가 들어감
+						
 				}else {
 						str += '<img src = "/resources/show.png"/>';
 						}
 				
 				str += '</a>';
 				str += '<p class = "orifilename">';
+				// 출력시 _______를 다시 &로 전환
+				arr[i] = arr[i].replace('________________', '&');
 				str += getOriginalName(arr[i]);
 				str += '</p>';
 					str += '</li>';
 
 				$(".uploadedList").append(str);
-					} else {
-						var str = '<li class = "col-xs-4">';
-						str += '';
-						str += '</li>';
-					$(".uploadedList").append(str);
-					}
+					
 				} 
 				});
 			
