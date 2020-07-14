@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace로 호출할 때 헷갈림을 제거한다. 하나의 폴더 역할 -->
+<mapper namespace="r.e.p">
+
+	<select id="getRno" resultType="Integer">
+		<!-- 첫번 째 파라미터가 null인가? null이 아니면 +1, null이라면 1 -->
+		SELECT NVL2(max(rno), max(rno)+1, 1) from reply
+	</select>
+
+	<insert id="insert">
+		INSERT INTO reply (rno, bno, replyer, replytext)
+		VALUES (#{rno},#{bno},#{replyer},#{replytext})
+	</insert>
+
+	<select id="list" resultType="ReplyVO">
+		SELECT * FROM reply WHERE bno =
+		#{bno} ORDER BY rno DESC
+	</select>
+
+	<update id="update">
+		UPDATE reply SET replytext = #{replytext}, updatedate
+		= sysdate WHERE rno =
+		#{rno}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM reply WHERE rno = #{rno}
+	</delete>
+
+	<delete id="deleteByBno">
+		DELETE FROM reply WHERE bno = #{bno}
+	</delete>
+</mapper>
