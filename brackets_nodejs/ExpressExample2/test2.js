@@ -5,10 +5,16 @@ var bodyParser = require("body-parser");
 var expressSession = require("express-session");
 var fs = require("fs");
 var nodemailer = require("nodemailer");
+var multer = require("multer");
+
 
 var app = express();
 
+// public 폴더를 외부에서 접근가능
 app.use(static(path.join(__dirname, "public")));
+
+// upload2 폴더를 외부에서 접근 가능, 앞에 선언해서 접근 시 꼭 상위 폴더 명까지 적어야 함
+app.use("/uploads2", static(path.join(__dirname, "uploads2")));
 
 app.use(bodyParser.urlencoded({
     extended: false
@@ -23,7 +29,49 @@ app.use(expressSession({
     saveUnintialized: true
 }));
 
+var storage = multer.diskStorage({
+    // 저장 경로
+    destination: function (req, file, callback) {
+        callback(null, "uploads2");
+    },
+    // 저장 시 파일 이름을 다르게 해서 덮어씌우기 문제 해결
+    filename: function (req, file, callback) {
+        callback(null, Date.now() + "__" + file.originalname);
+    }
+});
+
+// 호출 시 업로드 발생
+var upload = multer({
+    // 저장되는 위치
+    storage: storage,
+    // 저장 시 제약
+    limits: {
+        files: 10,
+        fileSize: 1024 * 1024 * 10
+    }
+});
+
 var router = express.Router();
+
+// 업로드 된 것을 배열로 받을 것인데, 그 중 해당 이름을 가진 것을 받자.
+router.route("/process/upload").post(upload.array("file", 1), function (req, res) {
+    console.log("/process/upload call");
+    console.log(req.files);
+    console.log(req.body.id);
+    var files = req.files;
+    var id = req.body.id;
+    
+    var orgname = files[0].originalname;
+    var filename = files[0].filename;
+    
+    res.send(`
+<h1>파일 업로드 성공</h1>
+<p>ID : ${id}</p>
+<p>ID : ${orgname}</p>
+<p>ID : ${filename}</p>
+<img src="/uploads2/${filename}">
+`)
+})
 
 // 로그인 해야만 접속할 수 있도록
 router.route("/user/email2").get(function (req, res) {
@@ -55,7 +103,7 @@ router.route("/user/email").post(function (req, res) {
         port: 587,
         secure: false,
         auth: {
-            user: sender, 
+            user: sender,
             pass: senderpw
         }
     });
@@ -68,16 +116,16 @@ router.route("/user/email").post(function (req, res) {
     };
 
     // 실제로 보냄
-   
-    transporter.sendMail(mailOptions, function(err, info){
-        if(err) {
+
+    transporter.sendMail(mailOptions, function (err, info) {
+        if (err) {
             console.log(err);
             return;
         }
         res.send("발송 성공");
     });
 
-   
+
 });
 
 router.route("/user/product").get(function (req, res) {
